@@ -1,65 +1,131 @@
-import Image from "next/image";
+/**
+ * Web Template Library - 作品一覧ページ
+ *
+ * すべての作品をカード形式で表示
+ */
+
+import Link from 'next/link'
+import Image from 'next/image'
+import { Card } from '@/design-system/components/primitives'
+
+const works = [
+  {
+    id: 'tokai-parts-industry',
+    title: '東海部品工業株式会社',
+    category: '製造業 コーポレートサイト',
+    description: 'トヨタ車体グループの自動車部品製造会社のコーポレートサイト。採用特化型のデザインとコンテンツ戦略。',
+    image: '/works/tokai-parts-industry/images/TOP/1.jpg',
+    tags: ['製造業', 'コーポレートサイト', '採用特化', 'Next.js', 'Tailwind CSS'],
+    path: '/works/tokai-parts-industry',
+  },
+  // 今後追加される作品
+]
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* ヘッダー */}
+      <header className="border-b bg-white">
+        <div className="container mx-auto px-6 py-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            Web Template Library
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg text-gray-600">
+            個人的な技術アーカイブ - 作品の完全実装コレクション
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* メインコンテンツ */}
+      <main className="container mx-auto px-6 py-12">
+        {/* 統計情報 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <Card className="p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">
+              {works.length}
+            </div>
+            <div className="text-sm text-gray-600">作品数</div>
+          </Card>
+          <Card className="p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">
+              100+
+            </div>
+            <div className="text-sm text-gray-600">技術タグ</div>
+          </Card>
+          <Card className="p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">
+              ∞
+            </div>
+            <div className="text-sm text-gray-600">成長中</div>
+          </Card>
         </div>
+
+        {/* 作品一覧 */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">作品一覧</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {works.map((work) => (
+              <Link key={work.id} href={work.path}>
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer h-full">
+                  {/* 画像 */}
+                  <div className="relative h-48 bg-gray-200">
+                    <Image
+                      src={work.image}
+                      alt={work.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* コンテンツ */}
+                  <div className="p-6">
+                    <div className="text-sm text-blue-600 font-medium mb-2">
+                      {work.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {work.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4">
+                      {work.description}
+                    </p>
+
+                    {/* タグ */}
+                    <div className="flex flex-wrap gap-2">
+                      {work.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {work.tags.length > 3 && (
+                        <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                          +{work.tags.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* フッター情報 */}
+        <footer className="mt-16 pt-8 border-t text-center text-gray-600">
+          <p className="mb-2">
+            作品を追加するには、
+            <code className="mx-2 px-2 py-1 bg-gray-100 rounded text-sm">
+              src/app/works/[作品名]/page.tsx
+            </code>
+            を作成
+          </p>
+          <p className="text-sm">
+            詳細: <Link href="/docs" className="text-blue-600 hover:underline">QUICK-START.md</Link>
+          </p>
+        </footer>
       </main>
     </div>
-  );
+  )
 }
