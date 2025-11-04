@@ -57,7 +57,7 @@ export default function RecruitHeader() {
 
             {/* 募集情報ボタン */}
             <Link
-              href="/works/tokai-parts-industry/recruit#recruitment"
+              href="/works/tokai-parts-industry/recruit/recruitment"
               className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-bold transition-colors whitespace-nowrap"
             >
               募集情報
@@ -93,7 +93,7 @@ export default function RecruitHeader() {
                 </Link>
               ))}
               <Link
-                href="/works/tokai-parts-industry/recruit#recruitment"
+                href="/works/tokai-parts-industry/recruit/recruitment"
                 className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-bold transition-colors text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >

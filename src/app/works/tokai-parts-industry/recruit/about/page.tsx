@@ -32,7 +32,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import RecruitHeader from '@/components/works/tokai-parts-industry/RecruitHeader'
 import Footer from '@/components/works/tokai-parts-industry/Footer'
-import { Building2, Users, Calendar, TrendingUp, Home, Hotel, Dumbbell, Waves } from 'lucide-react'
+import { Building2, Users, Calendar, TrendingUp, Home, Hotel, Dumbbell, Waves, Factory, BarChart3, Wrench, ClipboardList } from 'lucide-react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -48,19 +48,23 @@ export default function AboutPage() {
 
       <main>
         {/* Hero Section - ヒーローセクション */}
-        <section className="relative h-[400px] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-teal-400">
-            {/* 実際の工場写真を配置 */}
+        <section className="relative h-[400px] md:h-[500px] overflow-hidden">
+          <div className="absolute inset-0">
+            <Image
+              src="/works/tokai-parts-industry/images/RECRUIT/recruit/1.jpg"
+              alt="東海部品工業を知る"
+              fill
+              className="object-cover"
+              priority
+            />
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
             <div className="mb-4">
-              <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+              <BarChart3 className="w-16 h-16 mx-auto drop-shadow-lg" strokeWidth={1.5} />
             </div>
-            <p className="text-sm font-semibold mb-2">DATA</p>
-            <h1 className="text-4xl md:text-5xl font-bold">東海部品工業を知る</h1>
+            <p className="text-sm font-semibold mb-2 tracking-wider">DATA</p>
+            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">東海部品工業を知る</h1>
           </div>
         </section>
 
@@ -140,20 +144,25 @@ export default function AboutPage() {
                 <p className="text-sm font-semibold text-gray-700 mb-6 bg-white inline-block px-6 py-2 rounded-full">部署別の在籍割合</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
                   {[
-                    { name: '本社工場', percent: 20, icon: '🏢' },
-                    { name: '柳原工場', percent: 17, icon: '🏭' },
-                    { name: '知立工場', percent: 7, icon: '🏭' },
-                    { name: 'いなべ工場', percent: 40, icon: '🏭' },
-                    { name: '技術管理', percent: 5, icon: '📊' },
-                    { name: '技術', percent: 8, icon: '🔧' },
-                    { name: '生産管理', percent: 3, icon: '📋' },
-                  ].map((dept) => (
-                    <div key={dept.name} className="bg-white/70 rounded-2xl p-4 text-center">
-                      <div className="text-3xl mb-2">{dept.icon}</div>
-                      <p className="text-xs font-semibold text-gray-700 mb-2">{dept.name}</p>
-                      <p className="text-2xl font-bold text-blue-600">{dept.percent}<span className="text-sm">%</span></p>
-                    </div>
-                  ))}
+                    { name: '本社工場', percent: 20, icon: Building2 },
+                    { name: '柳原工場', percent: 17, icon: Factory },
+                    { name: '知立工場', percent: 7, icon: Factory },
+                    { name: 'いなべ工場', percent: 40, icon: Factory },
+                    { name: '技術管理', percent: 5, icon: BarChart3 },
+                    { name: '技術', percent: 8, icon: Wrench },
+                    { name: '生産管理', percent: 3, icon: ClipboardList },
+                  ].map((dept) => {
+                    const IconComponent = dept.icon
+                    return (
+                      <div key={dept.name} className="bg-white/70 rounded-2xl p-4 text-center">
+                        <div className="mb-2 flex justify-center">
+                          <IconComponent className="w-8 h-8 text-blue-600" strokeWidth={1.5} />
+                        </div>
+                        <p className="text-xs font-semibold text-gray-700 mb-2">{dept.name}</p>
+                        <p className="text-2xl font-bold text-blue-600">{dept.percent}<span className="text-sm">%</span></p>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>

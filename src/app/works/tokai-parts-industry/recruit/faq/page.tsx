@@ -17,6 +17,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import RecruitHeader from '@/components/works/tokai-parts-industry/RecruitHeader'
 import Footer from '@/components/works/tokai-parts-industry/Footer'
@@ -77,13 +78,22 @@ TEL:0566-23-4411`
 
       <main>
         {/* Hero Section */}
-        <section className="relative h-[300px] bg-gradient-to-br from-blue-600 to-blue-700">
-          <div className="absolute inset-0 bg-black/20"></div>
+        <section className="relative h-[300px] md:h-[400px]">
+          <div className="absolute inset-0">
+            <Image
+              src="/works/tokai-parts-industry/images/RECRUIT/faq/1.jpg"
+              alt="よくある質問"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/30"></div>
+          </div>
 
           <div className="relative h-full flex flex-col items-center justify-center text-white px-4">
-            <MessageCircle className="w-16 h-16 mb-4" />
+            <MessageCircle className="w-16 h-16 mb-4 drop-shadow-lg" />
             <p className="text-sm font-semibold mb-2 tracking-wider">FAQ</p>
-            <h1 className="text-4xl md:text-5xl font-bold">よくある質問</h1>
+            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">よくある質問</h1>
           </div>
         </section>
 

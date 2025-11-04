@@ -89,6 +89,22 @@ export default function TopPage() {
         <ManufacturingSection />
         <SustainabilitySection />
         <CTASection />
+
+        {/* 技術ドキュメントセクション */}
+        <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">技術ドキュメント</h2>
+            <p className="text-gray-600 mb-8">
+              このサイトで使用されている技術の詳細とClaude Codeへの指示文を確認できます
+            </p>
+            <Link
+              href="/works/tokai-parts-industry/tech"
+              className="inline-block bg-[#2563EB] hover:bg-[#1E40AF] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all"
+            >
+              技術一覧を見る
+            </Link>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

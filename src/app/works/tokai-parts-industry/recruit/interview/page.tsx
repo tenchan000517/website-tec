@@ -50,167 +50,181 @@ export default function InterviewListPage() {
 
       <main>
         {/* Hero Section - 社員写真グリッド */}
-        <section className="relative">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-            {/* 6枚の社員写真をグリッド表示 */}
-            {[1, 2, 3, 4, 5, 6].map((num) => (
-              <div key={num} className="relative aspect-[3/4] overflow-hidden">
-                <div className={`absolute inset-0 ${
-                  num % 2 === 0 ? 'bg-gradient-to-b from-green-400/60 to-green-400/80' : 'bg-gradient-to-b from-blue-400/60 to-blue-400/80'
-                }`}>
-                  {/* 実際の社員写真を配置 */}
-                </div>
-              </div>
-            ))}
+        <section className="relative h-[400px] md:h-[500px]">
+          {/* ベンチマーク画像を背景として使用 */}
+          <div className="absolute inset-0">
+            <Image
+              src="/works/tokai-parts-industry/images/RECRUIT/interview/1.jpg"
+              alt="先輩インタビュー"
+              fill
+              className="object-cover object-top"
+              priority
+            />
           </div>
 
           {/* タイトルオーバーレイ */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
             <div className="text-center text-white">
-              <p className="font-serif italic text-2xl mb-2">Interview</p>
-              <h1 className="text-4xl md:text-5xl font-bold">先輩インタビュー</h1>
+              <p className="font-serif italic text-3xl md:text-4xl mb-3">Interview</p>
+              <h1 className="text-4xl md:text-6xl font-bold drop-shadow-lg">先輩インタビュー</h1>
             </div>
           </div>
         </section>
 
         {/* 事務・技術職 先輩インタビュー */}
-        <section className="py-20 bg-gradient-to-b from-green-50 to-white">
+        <section className="py-20 bg-gradient-to-b from-[#F0FDF4] to-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* セクションタイトル */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-blue-600 mb-2">
+              <h2 className="text-3xl font-bold text-[#2563EB] mb-2">
                 事務・技術職 先輩インタビュー
               </h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
+              <div className="w-24 h-1 bg-[#2563EB] mx-auto"></div>
             </div>
 
             {/* インタビューカード */}
             <div className="grid md:grid-cols-3 gap-6">
-              {officeInterviews.map((interview) => (
-                <Link
-                  key={interview.id}
-                  href={`/works/tokai-parts-industry/recruit/interview/${interview.id}`}
-                  className="group"
-                >
-                  <div className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all ${
-                    interview.color === 'green' ? 'bg-green-500' : 'bg-blue-500'
-                  }`}>
-                    <div className="relative aspect-[3/4]">
-                      {/* 実際の社員写真 */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+              {officeInterviews.map((interview) => {
+                const isGreen = interview.color === 'green'
+                return (
+                  <Link
+                    key={interview.id}
+                    href={`/works/tokai-parts-industry/recruit/interview/${interview.id}`}
+                    className="group"
+                  >
+                    <div className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all ${
+                      isGreen ? 'bg-[#4ADE80]' : 'bg-[#2563EB]'
+                    }`}>
+                      <div className="relative aspect-[3/4]">
+                        {/* プレースホルダー背景 - 実際の社員写真に置き換え予定 */}
+                        <div className={`absolute inset-0 ${
+                          isGreen
+                            ? 'bg-gradient-to-br from-[#4ADE80] to-[#10B981]'
+                            : 'bg-gradient-to-br from-[#2563EB] to-[#1E40AF]'
+                        }`}></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-                      <div className="absolute top-4 left-4">
-                        <div className={`inline-block px-4 py-2 rounded-lg text-white font-bold ${
-                          interview.color === 'green' ? 'bg-green-600' : 'bg-blue-600'
-                        }`}>
-                          Interview {interview.id}
+                        <div className="absolute top-4 left-4">
+                          <div className={`inline-block px-4 py-2 rounded-lg text-white font-bold ${
+                            isGreen ? 'bg-[#10B981]' : 'bg-[#1E40AF]'
+                          }`}>
+                            Interview {interview.id}
+                          </div>
+                        </div>
+
+                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                          <p className="text-sm mb-1">{interview.year} {interview.name}</p>
+                          <p className="text-xs mb-3">{interview.dept} {interview.group}</p>
+                          <p className="text-sm font-medium mb-4 line-clamp-3">
+                            {interview.title}
+                          </p>
+                          <p className="text-[#F97316] text-sm font-bold flex items-center group-hover:translate-x-1 transition-transform">
+                            Read more
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </p>
                         </div>
                       </div>
-
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <p className="text-sm mb-1">{interview.year} {interview.name}</p>
-                        <p className="text-xs mb-3">{interview.dept} {interview.group}</p>
-                        <p className="text-sm font-medium mb-4 line-clamp-3">
-                          {interview.title}
-                        </p>
-                        <p className="text-orange-500 text-sm font-bold flex items-center">
-                          Read more
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </p>
-                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
 
         {/* 技能職 先輩インタビュー */}
-        <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <section className="py-20 bg-gradient-to-b from-white to-[#EFF6FF]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* セクションタイトル */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-blue-600 mb-2">
+              <h2 className="text-3xl font-bold text-[#2563EB] mb-2">
                 技能職 先輩インタビュー
               </h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
+              <div className="w-24 h-1 bg-[#2563EB] mx-auto"></div>
             </div>
 
             {/* インタビューカード */}
             <div className="grid md:grid-cols-3 gap-6">
-              {technicalInterviews.map((interview) => (
-                <Link
-                  key={interview.id}
-                  href={`/works/tokai-parts-industry/recruit/interview/${interview.id}`}
-                  className="group"
-                >
-                  <div className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all ${
-                    interview.color === 'green' ? 'bg-green-500' : 'bg-blue-500'
-                  }`}>
-                    <div className="relative aspect-[3/4]">
-                      {/* 実際の社員写真 */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+              {technicalInterviews.map((interview) => {
+                const isGreen = interview.color === 'green'
+                return (
+                  <Link
+                    key={interview.id}
+                    href={`/works/tokai-parts-industry/recruit/interview/${interview.id}`}
+                    className="group"
+                  >
+                    <div className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all ${
+                      isGreen ? 'bg-[#4ADE80]' : 'bg-[#2563EB]'
+                    }`}>
+                      <div className="relative aspect-[3/4]">
+                        {/* プレースホルダー背景 - 実際の社員写真に置き換え予定 */}
+                        <div className={`absolute inset-0 ${
+                          isGreen
+                            ? 'bg-gradient-to-br from-[#4ADE80] to-[#10B981]'
+                            : 'bg-gradient-to-br from-[#2563EB] to-[#1E40AF]'
+                        }`}></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-                      <div className="absolute top-4 left-4">
-                        <div className={`inline-block px-4 py-2 rounded-lg text-white font-bold ${
-                          interview.color === 'green' ? 'bg-green-600' : 'bg-blue-600'
-                        }`}>
-                          Interview {interview.id}
+                        <div className="absolute top-4 left-4">
+                          <div className={`inline-block px-4 py-2 rounded-lg text-white font-bold ${
+                            isGreen ? 'bg-[#10B981]' : 'bg-[#1E40AF]'
+                          }`}>
+                            Interview {interview.id}
+                          </div>
+                        </div>
+
+                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                          <p className="text-sm mb-1">{interview.year} {interview.name}</p>
+                          <p className="text-xs mb-3">{interview.dept} {interview.group}</p>
+                          <p className="text-sm font-medium mb-4 line-clamp-3">
+                            {interview.title}
+                          </p>
+                          <p className="text-[#F97316] text-sm font-bold flex items-center group-hover:translate-x-1 transition-transform">
+                            Read more
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </p>
                         </div>
                       </div>
-
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <p className="text-sm mb-1">{interview.year} {interview.name}</p>
-                        <p className="text-xs mb-3">{interview.dept} {interview.group}</p>
-                        <p className="text-sm font-medium mb-4 line-clamp-3">
-                          {interview.title}
-                        </p>
-                        <p className="text-orange-500 text-sm font-bold flex items-center">
-                          Read more
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </p>
-                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
 
         {/* FAQ & RECRUITMENT Buttons */}
-        <section className="py-16 bg-gradient-to-b from-green-400 to-green-500">
+        <section className="py-16 bg-[#4ADE80]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               {/* FAQ */}
               <Link
                 href="/works/tokai-parts-industry/recruit/faq"
-                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-4 w-full md:w-auto"
+                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-6 w-full md:w-auto"
               >
-                <div>
-                  <p className="text-blue-600 font-bold text-2xl">FAQ</p>
+                <div className="text-left">
+                  <p className="text-[#2563EB] font-bold text-2xl">FAQ</p>
                   <p className="text-sm text-gray-600">よくある質問</p>
                 </div>
-                <svg className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-gray-400 group-hover:text-[#2563EB] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
 
               {/* RECRUITMENT */}
               <Link
-                href="/works/tokai-parts-industry/recruit#recruitment"
-                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-4 w-full md:w-auto"
+                href="/works/tokai-parts-industry/recruit/recruitment"
+                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-6 w-full md:w-auto"
               >
-                <div>
-                  <p className="text-blue-600 font-bold text-2xl">RECRUITMENT</p>
+                <div className="text-left">
+                  <p className="text-[#2563EB] font-bold text-2xl">RECRUITMENT</p>
                   <p className="text-sm text-gray-600">募集情報</p>
                 </div>
-                <svg className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-gray-400 group-hover:text-[#2563EB] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>

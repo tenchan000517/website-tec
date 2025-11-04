@@ -11,9 +11,9 @@ import { Card } from '@/design-system/components/primitives'
 const works = [
   {
     id: 'tokai-parts-industry',
-    title: '東海部品工業株式会社',
+    title: 'サンプル作品 - 製造業コーポレートサイト',
     category: '製造業 コーポレートサイト',
-    description: 'トヨタ車体グループの自動車部品製造会社のコーポレートサイト。採用特化型のデザインとコンテンツ戦略。',
+    description: '自動車部品製造会社のコーポレートサイト。採用特化型のデザインとコンテンツ戦略。',
     image: '/works/tokai-parts-industry/images/TOP/1.jpg',
     tags: ['製造業', 'コーポレートサイト', '採用特化', 'Next.js', 'Tailwind CSS'],
     path: '/works/tokai-parts-industry',
@@ -112,6 +112,22 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 技術ドキュメントセクション */}
+        <section className="mt-20 py-20 bg-gradient-to-b from-blue-50 to-white rounded-2xl">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">技術ドキュメント</h2>
+            <p className="text-gray-600 mb-8">
+              このテンプレートで使用されている技術の詳細とClaude Codeへの指示文を確認できます
+            </p>
+            <Link
+              href="/tech"
+              className="inline-block bg-[#2563EB] hover:bg-[#1E40AF] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all"
+            >
+              技術一覧を見る →
+            </Link>
+          </div>
+        </section>
+
         {/* フッター情報 */}
         <footer className="mt-16 pt-8 border-t text-center text-gray-600">
           <p className="mb-2">
@@ -122,7 +138,7 @@ export default function Home() {
             を作成
           </p>
           <p className="text-sm">
-            詳細: <Link href="/docs" className="text-blue-600 hover:underline">QUICK-START.md</Link>
+            詳細: <Link href="/docs" className="text-blue-600 hover:underline">作品追加手順を見る →</Link>
           </p>
         </footer>
       </main>

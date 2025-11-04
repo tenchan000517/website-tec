@@ -88,40 +88,39 @@ export default function RecruitTopPage() {
 
       <main>
         {/* Hero Section - 世界から信頼される モノづくりの力 */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-20 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative">
-              {/* 背景イラスト（都市とグリーン） */}
-              <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-blue-100 to-transparent"></div>
+        <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+          {/* 背景画像 */}
+          <div className="absolute inset-0">
+            <Image
+              src="/works/tokai-parts-industry/images/RECRUIT/TOP/1.jpg"
+              alt="東海部品工業 リクルート"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
+          </div>
 
-              {/* メインコンテンツ */}
-              <div className="relative text-center pt-12">
-                {/* 社員イラスト（上部） */}
-                <div className="flex justify-center gap-4 mb-8">
-                  <Users className="w-12 h-12 text-blue-600" />
-                  <Users className="w-12 h-12 text-blue-600" />
-                  <Users className="w-12 h-12 text-blue-600" />
-                </div>
-
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                  <span className="text-blue-600">世界から信頼される</span>
-                </h1>
-                <h2 className="text-5xl md:text-7xl font-bold mb-12">
-                  <span className="text-blue-600">モノづくりの力</span>
-                </h2>
-              </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative h-full flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white drop-shadow-lg">
+                世界から信頼される
+              </h1>
+              <h2 className="text-6xl md:text-8xl font-bold text-white drop-shadow-lg">
+                モノづくりの力
+              </h2>
             </div>
           </div>
         </section>
 
         {/* Message Section */}
-        <section className="py-20 bg-gradient-to-b from-green-400 to-green-500 relative overflow-hidden">
+        <section className="py-20 bg-[#4ADE80] relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <p className="text-yellow-400 font-serif italic text-3xl mb-6">\\ Message //</p>
+              <p className="text-[#FCD34D] font-serif italic text-3xl md:text-4xl mb-6">\\ Message //</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-white">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 text-white">
               <div className="space-y-4 text-sm md:text-base leading-relaxed">
                 <p>当社は「誇りある全員に、生き生きと働ける」をスローガンに新しい時代文化の創造に貢献しています。</p>
                 <p>100年にわたり創意工夫を重ねてきた、重要性を見つけ出し活力した成長を目指しています。</p>
@@ -129,33 +128,28 @@ export default function RecruitTopPage() {
                 <p>個すること目当て、チャレンジして行ける風土をともに、お迎えしています。</p>
               </div>
             </div>
-
-            {/* イラスト装飾 */}
-            <div className="flex justify-center mt-8">
-              <Factory className="w-16 h-16 text-white" />
-            </div>
           </div>
         </section>
 
         {/* Interview Section - 先輩インタビュー */}
-        <section className="py-20 bg-gradient-to-b from-green-50 to-green-100">
+        <section className="py-20 bg-gradient-to-b from-[#F0FDF4] to-[#DCFCE7]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* セクションタイトル */}
             <div className="text-center mb-16">
-              <div className="inline-block bg-green-200 rounded-full px-8 py-12 mb-8">
-                <p className="text-green-600 font-serif italic text-2xl mb-2">Interview</p>
+              <div className="inline-block bg-[#BBF7D0] rounded-full px-12 py-12 mb-8">
+                <p className="text-[#4ADE80] font-serif italic text-2xl mb-2">Interview</p>
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  <span className="text-orange-500">先輩</span>
-                  <span className="text-orange-500">インタビュー</span>
+                  <span className="text-[#F97316]">先輩</span>
+                  <span className="text-[#F97316]">インタビュー</span>
                 </h2>
               </div>
-              <p className="text-gray-700 max-w-2xl mx-auto">
+              <p className="text-gray-700 max-w-2xl mx-auto mb-6">
                 東海部品工業で活躍するキャリアリティあふれる先輩たちをご紹介します。<br />
                 仕事に対する想いやキャリアステップ、プライベートの都合などをご紹介します。
               </p>
               <Link
                 href="/works/tokai-parts-industry/recruit/interview"
-                className="inline-block mt-6 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold transition-colors"
+                className="inline-block bg-[#F97316] hover:bg-[#EA580C] text-white px-8 py-3 rounded-full font-bold transition-colors"
               >
                 先輩インタビュー一覧 →
               </Link>
@@ -163,48 +157,58 @@ export default function RecruitTopPage() {
 
             {/* インタビューカード */}
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-              {interviews.slice(0, 8).map((interview, index) => (
-                <Link
-                  key={interview.id}
-                  href={`/works/tokai-parts-industry/recruit/interview/${interview.id}`}
-                  className="group"
-                >
-                  <div className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
-                    index % 4 === 0 || index % 4 === 3 ? 'bg-blue-600' : 'bg-green-500'
-                  }`}>
-                    <div className="relative aspect-[3/4]">
-                      {/* 仮の画像 - 実際の画像に置き換える */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 flex items-end p-4">
-                        <div className="text-white w-full">
-                          <div className={`inline-block px-3 py-1 rounded mb-2 text-xs font-bold ${
-                            index % 4 === 0 || index % 4 === 3 ? 'bg-blue-500' : 'bg-green-400'
-                          }`}>
-                            Interview {interview.id}
+              {interviews.slice(0, 8).map((interview, index) => {
+                const isBlue = index % 4 === 0 || index % 4 === 3
+                return (
+                  <Link
+                    key={interview.id}
+                    href={`/works/tokai-parts-industry/recruit/interview/${interview.id}`}
+                    className="group"
+                  >
+                    <div className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
+                      isBlue ? 'bg-[#2563EB]' : 'bg-[#4ADE80]'
+                    }`}>
+                      <div className="relative aspect-[3/4]">
+                        {/* プレースホルダー背景 - 実際の社員写真に置き換え予定 */}
+                        <div className={`absolute inset-0 ${
+                          isBlue ? 'bg-gradient-to-br from-[#3B82F6] to-[#1E40AF]' : 'bg-gradient-to-br from-[#4ADE80] to-[#10B981]'
+                        }`}>
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
+                          <div className="text-white w-full">
+                            <div className={`inline-block px-3 py-1 rounded mb-2 text-xs font-bold ${
+                              isBlue ? 'bg-[#3B82F6]' : 'bg-[#34D399]'
+                            }`}>
+                              Interview {interview.id}
+                            </div>
+                            <p className="text-xs mb-1">{interview.year} {interview.name}</p>
+                            <p className="text-xs mb-1">{interview.dept} {interview.factory}</p>
+                            <p className="text-xs line-clamp-3">{interview.title}</p>
+                            <p className="text-[#F97316] text-xs font-bold mt-2">Read more →</p>
                           </div>
-                          <p className="text-xs mb-1">{interview.year} {interview.name}</p>
-                          <p className="text-xs mb-1">{interview.dept} {interview.factory}</p>
-                          <p className="text-xs line-clamp-3">{interview.title}</p>
-                          <p className="text-orange-500 text-xs font-bold mt-2">Read more →</p>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
 
         {/* Crosstalk Section - クロストーク */}
-        <section className="py-20 bg-gradient-to-b from-green-100 to-green-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-gradient-to-b from-[#DCFCE7] to-[#BBF7D0] relative">
+          {/* ドットパターン背景 */}
+          <div className="absolute inset-0 opacity-30" style={{backgroundImage: 'radial-gradient(circle, #10B981 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             {/* セクションタイトル */}
             <div className="text-center mb-16">
               <div className="inline-block mb-8">
-                <p className="text-green-600 font-serif italic text-2xl mb-2">Crosstalk</p>
+                <p className="text-[#4ADE80] font-serif italic text-3xl mb-2">Crosstalk</p>
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  <span className="text-orange-500">クロス</span>
-                  <span className="text-orange-500">トーク</span>
+                  <span className="text-[#F97316]">クロス</span>
+                  <span className="text-[#F97316]">トーク</span>
                 </h2>
               </div>
               <p className="text-gray-700 max-w-2xl mx-auto">
@@ -222,31 +226,31 @@ export default function RecruitTopPage() {
                   className="group"
                 >
                   <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                    <div className="flex">
-                      {/* 画像エリア */}
-                      <div className="w-1/2 relative aspect-square bg-gray-200">
-                        {/* 実際の画像に置き換える */}
+                    <div className="flex flex-col md:flex-row">
+                      {/* 画像エリア - プレースホルダー */}
+                      <div className="md:w-1/2 relative aspect-square bg-gradient-to-br from-[#4ADE80] to-[#10B981]">
+                        {/* 実際の社員写真に置き換え予定 */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Users className="w-20 h-20 text-white/50" />
+                        </div>
                       </div>
                       {/* テキストエリア */}
-                      <div className="w-1/2 p-6 flex flex-col justify-center">
-                        <div className="inline-block bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-bold mb-3 self-start">
+                      <div className="md:w-1/2 p-6 flex flex-col justify-center">
+                        <div className="inline-block bg-[#D1FAE5] text-[#10B981] px-3 py-1 rounded-full text-xs font-bold mb-3 self-start">
                           Crosstalk {crosstalk.id}
                         </div>
                         <h3 className="text-base font-bold mb-4 text-gray-900">
                           {crosstalk.title}
                         </h3>
-                        {crosstalk.members.map((member, idx) => (
-                          <div key={idx} className="text-xs text-gray-600 mb-1">
-                            <span className="font-bold">{member.name}</span>
-                            {member.position && <span className="ml-1">× </span>}
-                          </div>
-                        ))}
-                        {crosstalk.members.map((member, idx) => (
-                          <p key={idx} className="text-xs text-gray-500">
-                            {member.dept} {member.group}
-                          </p>
-                        ))}
-                        <p className="text-orange-500 text-xs font-bold mt-4">Read more →</p>
+                        <div className="space-y-2 mb-4">
+                          {crosstalk.members.map((member, idx) => (
+                            <div key={idx}>
+                              <p className="text-sm font-bold text-gray-800">{member.name}</p>
+                              <p className="text-xs text-gray-500">{member.dept} {member.group}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <p className="text-[#F97316] text-sm font-bold mt-auto group-hover:translate-x-1 transition-transform">Read more →</p>
                       </div>
                     </div>
                   </div>
@@ -257,20 +261,20 @@ export default function RecruitTopPage() {
         </section>
 
         {/* About Us Section - 東海部品工業を知る */}
-        <section className="py-20 bg-gradient-to-b from-green-200 to-white relative">
+        <section className="py-20 bg-gradient-to-b from-[#BBF7D0] to-white relative">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-block bg-green-200 rounded-full px-12 py-16 mb-8">
-              <p className="text-green-600 font-serif italic text-2xl mb-4">About us</p>
+            <div className="inline-block bg-[#BBF7D0] rounded-full px-12 py-16 mb-8">
+              <p className="text-[#4ADE80] font-serif italic text-2xl mb-4">About us</p>
               <h2 className="text-3xl md:text-4xl font-bold">
-                <span className="text-orange-500">東海部品工業を知る</span>
+                <span className="text-[#F97316]">東海部品工業を知る</span>
               </h2>
-              <p className="text-gray-700 mt-6 text-sm max-w-md mx-auto">
+              <p className="text-gray-700 mt-6 text-sm max-w-md mx-auto leading-relaxed">
                 トヨタ車体グループの一員として、当社で培われた技術情報を提供<br />
                 人と社会に信頼つながる知識をつくり出しています。
               </p>
               <Link
-                href="/works/tokai-parts-industry/recruit#data"
-                className="inline-block mt-6 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold transition-colors"
+                href="/works/tokai-parts-industry/recruit/about"
+                className="inline-block mt-6 bg-[#F97316] hover:bg-[#EA580C] text-white px-8 py-3 rounded-full font-bold transition-colors"
               >
                 東海部品工業を知るへ →
               </Link>
@@ -282,13 +286,15 @@ export default function RecruitTopPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {/* DATA */}
               <Link
-                href="/works/tokai-parts-industry/recruit#data"
+                href="/works/tokai-parts-industry/recruit/about#data"
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-700"></div>
+                {/* プレースホルダー背景 - 実際の画像に置き換え予定 */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#14B8A6] to-[#0D9488]"></div>
+                <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative h-full flex flex-col items-center justify-center text-white p-6">
                   <BarChart3 className="w-16 h-16 mb-4" />
-                  <p className="text-sm font-semibold mb-2">DATA</p>
+                  <p className="text-lg font-semibold mb-2">DATA</p>
                   <h3 className="text-xl font-bold text-center">数字で見る東海部品工業</h3>
                 </div>
               </Link>
@@ -298,10 +304,12 @@ export default function RecruitTopPage() {
                 href="/works/tokai-parts-industry/manufacturing"
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-700"></div>
+                {/* プレースホルダー背景 - 実際の画像に置き換え予定 */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#14B8A6] to-[#0D9488]"></div>
+                <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative h-full flex flex-col items-center justify-center text-white p-6">
                   <Car className="w-16 h-16 mb-4" />
-                  <p className="text-sm font-semibold mb-2">FLOW</p>
+                  <p className="text-lg font-semibold mb-2">FLOW</p>
                   <h3 className="text-xl font-bold text-center">東海部品工業 工場見学</h3>
                 </div>
               </Link>
@@ -311,10 +319,12 @@ export default function RecruitTopPage() {
                 href="/works/tokai-parts-industry/recruit/faq"
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-700"></div>
+                {/* プレースホルダー背景 - 実際の画像に置き換え予定 */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#6366F1] to-[#4F46E5]"></div>
+                <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative h-full flex flex-col items-center justify-center text-white p-6">
-                  <Users className="w-16 h-16 mb-4" />
-                  <p className="text-sm font-semibold mb-2">Q&A</p>
+                  <MessageCircle className="w-16 h-16 mb-4" />
+                  <p className="text-lg font-semibold mb-2">Q&A</p>
                   <h3 className="text-xl font-bold text-center">若手社員アンケート</h3>
                 </div>
               </Link>
@@ -323,33 +333,33 @@ export default function RecruitTopPage() {
         </section>
 
         {/* FAQ & RECRUITMENT Buttons */}
-        <section className="py-16 bg-gradient-to-b from-green-400 to-green-500">
+        <section className="py-16 bg-[#4ADE80]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               {/* FAQ */}
               <Link
                 href="/works/tokai-parts-industry/recruit/faq"
-                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-4 w-full md:w-auto"
+                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-6 w-full md:w-auto"
               >
-                <div>
-                  <p className="text-blue-600 font-bold text-2xl">FAQ</p>
+                <div className="text-left">
+                  <p className="text-[#2563EB] font-bold text-2xl">FAQ</p>
                   <p className="text-sm text-gray-600">よくある質問</p>
                 </div>
-                <svg className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-gray-400 group-hover:text-[#2563EB] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
 
               {/* RECRUITMENT */}
               <Link
-                href="#recruitment"
-                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-4 w-full md:w-auto"
+                href="/works/tokai-parts-industry/recruit/recruitment"
+                className="group bg-white hover:bg-gray-50 rounded-full px-12 py-6 shadow-lg hover:shadow-xl transition-all flex items-center gap-6 w-full md:w-auto"
               >
-                <div>
-                  <p className="text-blue-600 font-bold text-2xl">RECRUITMENT</p>
+                <div className="text-left">
+                  <p className="text-[#2563EB] font-bold text-2xl">RECRUITMENT</p>
                   <p className="text-sm text-gray-600">募集情報</p>
                 </div>
-                <svg className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-gray-400 group-hover:text-[#2563EB] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
