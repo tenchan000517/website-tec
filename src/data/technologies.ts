@@ -1,3 +1,5 @@
+import { aiBrainLogsTechnologies } from './ai-brain-logs-technologies';
+
 export interface Technology {
   slug: string              // URL用（例: "hero-carousel"）
   title: string             // 技術名（例: "ヒーローセクション with カルーセル"）
@@ -13,7 +15,8 @@ export interface Technology {
   relatedTech: string[]    // 関連技術のslug配列
 }
 
-export const technologies: Technology[] = [
+// 既存の技術データ
+const existingTechnologies: Technology[] = [
   {
     slug: 'parent-company-badge',
     title: '親会社バッジ - ヘッダー上部配置',
@@ -8363,5 +8366,3386 @@ npm run lint
 3. 新しい技術を追加: TECH-DOC-QUICK-START.mdを参照
 4. 新しい作品を追加: READMEを参照`,
     relatedTech: []
+  },
+  {
+    slug: 'three-column-layout-watashi',
+    title: '3カラムレイアウト - 固定幅カラム（370px + 270px + 300px）',
+    category: 'レイアウト・構造',
+    description: '異なる幅の3つのカラムを横並びに配置するレイアウト。更新情報、一覧、動画など異なるコンテンツタイプを同時に表示。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx'
+    ],
+    code: `{/* 3 Column Layout */}
+<div className="top-box-wrapper">
+  {/* Left Column - Updates */}
+  <div className="top-box updates-box">
+    <h2 className="section-title">更新情報</h2>
+    <div className="scroll-area">
+      {/* コンテンツ */}
+    </div>
+  </div>
+
+  {/* Center Column - Kakugo List */}
+  <div className="top-box kakugo-box">
+    <h2 className="section-title">私のカクゴ一覧</h2>
+    <div className="scroll-area">
+      {/* コンテンツ */}
+    </div>
+  </div>
+
+  {/* Right Column - Video */}
+  <div className="top-box video-box">
+    <div className="video-wrapper">
+      {/* 動画プレーヤー */}
+    </div>
+  </div>
+</div>
+
+<style jsx>{\`
+  .top-box-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 55px;
   }
-]
+
+  .top-box {
+    background: #ffffff;
+  }
+
+  .updates-box {
+    width: 370px;
+  }
+
+  .kakugo-box {
+    width: 270px;
+  }
+
+  .video-box {
+    width: 300px;
+    padding-top: 60px;
+  }
+
+  @media (max-width: 1024px) {
+    .top-box-wrapper {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .updates-box,
+    .kakugo-box,
+    .video-box {
+      width: 100%;
+    }
+
+    .video-box {
+      padding-top: 0;
+    }
+  }
+\`}</style>`,
+    prompt: `TOPページに3カラムレイアウトを実装してください。
+
+## 要件
+
+### レイアウト構造
+1. 左カラム（更新情報）: 370px幅
+2. 中央カラム（私のカクゴ一覧）: 270px幅
+3. 右カラム（動画）: 300px幅
+4. カラム間のギャップ: 20px
+
+### デザイン仕様
+- 背景色: #ffffff（各カラム）
+- マージン下: 55px（全体コンテナ）
+- 右カラムのパディング上: 60px
+
+### レスポンシブ対応
+- 1024px以下: 縦並びに変更（flex-direction: column）
+- モバイル: 全カラムを100%幅に
+- ギャップ: 30pxに拡大（縦並び時）
+
+## 実装手順
+
+1. 親コンテナ（.top-box-wrapper）を作成
+   - display: flex
+   - gap: 20px
+
+2. 3つの子要素（.top-box）を作成
+   - 各カラムに固有クラス（.updates-box、.kakugo-box、.video-box）を追加
+   - 固定幅を指定
+
+3. レスポンシブメディアクエリを追加
+   - @media (max-width: 1024px)で縦並びに変更
+
+4. 各カラムにコンテンツを配置
+   - セクションタイトル（<h2>）
+   - スクロールエリア（左・中央）
+   - 動画プレーヤー（右）
+
+## デザインのポイント
+- 異なる幅のカラムで視覚的な優先度を表現
+- 更新情報（370px）を最も広く確保
+- 動画（300px）も重要コンテンツとして大きめに
+- 一覧（270px）はコンパクトに
+- 合計幅: 370 + 20 + 270 + 20 + 300 = 980px（コンテナ幅に収まる）`,
+    preview: `<div class="flex gap-5 mb-14">
+  <div class="bg-white p-4 rounded" style="width: 370px">
+    <h3 class="font-bold mb-4 pb-2 border-b-2 border-black">更新情報</h3>
+    <div class="h-32 overflow-auto text-sm text-gray-600">
+      更新情報がここに表示されます
+    </div>
+  </div>
+  <div class="bg-white p-4 rounded" style="width: 270px">
+    <h3 class="font-bold mb-4 pb-2 border-b-2 border-black">私のカクゴ一覧</h3>
+    <div class="h-32 overflow-auto text-sm text-gray-600">
+      一覧がここに表示されます
+    </div>
+  </div>
+  <div class="bg-white p-4 rounded" style="width: 300px">
+    <div class="bg-gradient-to-br from-purple-500 to-indigo-600 h-32 rounded flex items-center justify-center text-white">
+      動画
+    </div>
+  </div>
+</div>`,
+    relatedTech: ['custom-scroll-area-watashi']
+  },
+  {
+    slug: 'custom-scroll-area-watashi',
+    title: 'カスタムスクロールエリア - 290px固定高さ',
+    category: 'UIコンポーネント',
+    description: '固定高さのスクロールエリアにカスタムスクロールバーを適用。視覚的に洗練されたデザインで多くのコンテンツを限られたスペースに表示。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx'
+    ],
+    code: `<div className="scroll-area">
+  {/* スクロール可能なコンテンツ */}
+</div>
+
+<style jsx>{\`
+  .scroll-area {
+    height: 290px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+  }
+
+  .scroll-area::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scroll-area::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+
+  .scroll-area::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 3px;
+  }
+
+  .scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa;
+  }
+\`}</style>`,
+    prompt: `カスタムスクロールエリアを実装してください。
+
+## 要件
+
+### 基本設定
+- 高さ: 290px（固定）
+- 縦スクロール: 有効（overflow-y: auto）
+- 横スクロール: 無効（overflow-x: hidden）
+- パディング右: 8px（スクロールバー用のスペース）
+
+### スクロールバーのデザイン
+1. 幅: 6px
+2. トラック（背景）: #f0f0f0
+3. サム（つまみ）: #cccccc、角丸3px
+4. ホバー時: #aaaaaa
+
+## 実装手順
+
+1. スクロールエリア要素を作成
+   - class="scroll-area"
+   - 固定高さを設定
+
+2. オーバーフロープロパティを設定
+   - overflow-y: auto（縦スクロール）
+   - overflow-x: hidden（横スクロール無効）
+
+3. Webkitスクロールバーのスタイリング
+   - ::-webkit-scrollbar（幅）
+   - ::-webkit-scrollbar-track（トラック）
+   - ::-webkit-scrollbar-thumb（つまみ）
+   - ::-webkit-scrollbar-thumb:hover（ホバー）
+
+4. パディング調整
+   - padding-right: 8px（スクロールバーとコンテンツの間隔）
+
+## デザインのポイント
+- 細めのスクロールバー（6px）で現代的なデザイン
+- 淡い色使い（#f0f0f0、#cccccc）で主張しすぎない
+- ホバー時の色変化で操作性を向上
+- 固定高さ（290px）で一貫したレイアウト
+- 複数のコンテンツを限られたスペースに効率的に表示`,
+    preview: `<div class="h-72 overflow-y-auto overflow-x-hidden pr-2" style="scrollbar-width: thin; scrollbar-color: #cccccc #f0f0f0;">
+  <div class="space-y-3">
+    <div class="flex items-center gap-3 p-3 border-b">
+      <div class="w-12 h-12 rounded-full bg-blue-500"></div>
+      <div class="flex-1">
+        <p class="text-xs text-gray-500">2025.10.01</p>
+        <p class="text-sm">更新情報アイテム 1</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 p-3 border-b">
+      <div class="w-12 h-12 rounded-full bg-green-500"></div>
+      <div class="flex-1">
+        <p class="text-xs text-gray-500">2025.09.01</p>
+        <p class="text-sm">更新情報アイテム 2</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 p-3 border-b">
+      <div class="w-12 h-12 rounded-full bg-purple-500"></div>
+      <div class="flex-1">
+        <p class="text-xs text-gray-500">2025.09.01</p>
+        <p class="text-sm">更新情報アイテム 3</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 p-3 border-b">
+      <div class="w-12 h-12 rounded-full bg-red-500"></div>
+      <div class="flex-1">
+        <p class="text-xs text-gray-500">2025.08.01</p>
+        <p class="text-sm">更新情報アイテム 4</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 p-3 border-b">
+      <div class="w-12 h-12 rounded-full bg-yellow-500"></div>
+      <div class="flex-1">
+        <p class="text-xs text-gray-500">2025.07.01</p>
+        <p class="text-sm">更新情報アイテム 5</p>
+      </div>
+    </div>
+  </div>
+</div>`,
+    relatedTech: ['three-column-layout-watashi']
+  },
+  {
+    slug: 'green-accent-button-watashi',
+    title: 'グリーンアクセントボタン - ブランドカラー活用',
+    category: 'UIコンポーネント',
+    description: 'ブランドカラー（#8BC34A）を使用したCTAボタン。ホバー時のアニメーションとシャドウで視覚的なフィードバックを提供。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx',
+      '/src/app/works/watashi-no-kakugo/persons/page.tsx',
+      '/src/components/works/watashi-no-kakugo/Header.tsx'
+    ],
+    code: `<Link href="/works/watashi-no-kakugo/sns" className="more-button">
+  ブログ一覧へ →
+</Link>
+
+<style jsx>{\`
+  .more-button {
+    display: inline-block;
+    padding: 16px 56px;
+    background: #999999;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  .more-button:hover {
+    background: #8BC34A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 195, 74, 0.3);
+  }
+\`}</style>`,
+    prompt: `グリーンアクセントボタンを実装してください。
+
+## 要件
+
+### 基本デザイン
+- パディング: 16px 56px
+- 背景色（通常）: #999999（グレー）
+- 背景色（ホバー）: #8BC34A（グリーン）
+- 文字色: #ffffff（白）
+- フォントサイズ: 14px
+- フォントウェイト: bold
+- 角丸: 2px
+
+### ホバーアニメーション
+- 背景色変化: #999999 → #8BC34A
+- Y軸移動: translateY(-2px)
+- ボックスシャドウ: 0 4px 12px rgba(139, 195, 74, 0.3)
+- トランジション: all 0.3s ease
+
+## 実装手順
+
+1. ボタン要素を作成
+   - inline-block で表示
+   - text-decoration: none（リンクの下線を削除）
+
+2. 基本スタイルを設定
+   - パディング、背景色、文字色、フォント
+
+3. ホバースタイルを追加
+   - :hoverセレクタで変化を定義
+   - transform、background、box-shadowを変更
+
+4. トランジション効果を設定
+   - transition: all 0.3s ease
+   - すべてのプロパティ変化を滑らかに
+
+## デザインのポイント
+- 通常時はグレー（#999999）で控えめに
+- ホバー時にグリーン（#8BC34A）でブランドを強調
+- translateY(-2px)で浮き上がる感覚
+- シャドウでさらに立体感を強調
+- トランジションで心地よい操作感を実現`,
+    preview: `<div class="flex justify-center">
+  <button class="px-14 py-4 bg-gray-500 text-white text-sm font-bold rounded transition-all duration-300 hover:bg-[#8BC34A] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-200">
+    ブログ一覧へ →
+  </button>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'person-card-circular-image-watashi',
+    title: '人物カード - 円形画像 + 肩書 + 名前 + メッセージ',
+    category: 'UIコンポーネント',
+    description: '人物プロフィールを表示するカードコンポーネント。円形画像と階層的なテキスト情報で視認性を確保。ホバー時の浮き上がりアニメーション。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/persons/page.tsx'
+    ],
+    code: `<Link href="/works/watashi-no-kakugo/profile" className="person-card">
+  <div className="person-image">
+    <div className="person-placeholder" style={{ background: '#2196F3' }}></div>
+  </div>
+  <div className="person-info">
+    <p className="person-job">社会人野球クラブチーム京滝ゴールデンゴールズ監督・タレント</p>
+    <h3 className="person-name">片岡女花織</h3>
+    <p className="person-message">夢ある限り努力は無限</p>
+  </div>
+</Link>
+
+<style jsx>{\`
+  .person-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .person-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .person-image {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .person-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .person-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .person-job {
+    font-size: 12px;
+    color: #666666;
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+
+  .person-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0 0 8px;
+  }
+
+  .person-message {
+    font-size: 14px;
+    color: #333333;
+    margin: 0;
+    line-height: 1.5;
+  }
+\`}</style>`,
+    prompt: `人物カードコンポーネントを実装してください。
+
+## 要件
+
+### レイアウト構造
+- フレックスボックス（横並び）
+- 画像エリア: 100px × 100px（円形）
+- 情報エリア: 可変幅（flex: 1）
+- ギャップ: 16px
+
+### デザイン仕様
+- パディング: 20px
+- 背景色: #ffffff
+- ボーダー: 1px solid #e5e5e5
+- 角丸: 4px
+
+### テキスト階層
+1. 肩書（.person-job）
+   - フォントサイズ: 12px
+   - 色: #666666
+   - マージン下: 4px
+
+2. 名前（.person-name）
+   - フォントサイズ: 16px
+   - フォントウェイト: bold
+   - 色: #000000
+   - マージン下: 8px
+
+3. メッセージ（.person-message）
+   - フォントサイズ: 14px
+   - 色: #333333
+
+### ホバーアニメーション
+- Y軸移動: translateY(-4px)
+- ボックスシャドウ: 0 6px 16px rgba(0, 0, 0, 0.1)
+- トランジション: all 0.3s
+
+## 実装手順
+
+1. カード要素を作成
+   - Linkコンポーネントを使用
+   - flexレイアウトで横並び
+
+2. 画像エリアを配置
+   - 円形（border-radius: 50%）
+   - 固定サイズ（100px × 100px）
+   - flex-shrink: 0（縮小防止）
+
+3. 情報エリアを配置
+   - flex: 1（残りスペースを使用）
+   - min-width: 0（テキスト省略を有効化）
+
+4. テキスト要素を階層的に配置
+   - 肩書 → 名前 → メッセージの順
+
+5. ホバー効果を追加
+   - transform、box-shadow
+
+## デザインのポイント
+- 円形画像で人物の顔を強調
+- 階層的なテキスト配置で情報を整理
+- ホバー時の浮き上がりで操作性を向上
+- シンプルなボーダーとシャドウで洗練された印象`,
+    preview: `<div class="flex items-center gap-4 p-5 bg-white border border-gray-200 rounded transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+  <div class="w-24 h-24 rounded-full bg-blue-500 flex-shrink-0"></div>
+  <div class="flex-1 min-w-0">
+    <p class="text-xs text-gray-600 mb-1">社会人野球クラブチーム監督・タレント</p>
+    <h3 class="text-base font-bold mb-2">片岡女花織</h3>
+    <p class="text-sm text-gray-800">夢ある限り努力は無限</p>
+  </div>
+</div>`,
+    relatedTech: ['two-column-person-grid-watashi']
+  },
+  {
+    slug: 'blog-card-five-column-grid-watashi',
+    title: 'ブログカード - 5カラムグリッド',
+    category: 'UIコンポーネント',
+    description: '5カラムグリッドで配置されるブログカード。画像、日付、職業、名前、タイトルを階層的に表示。ホバー時のアニメーションで視覚的フィードバック。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx',
+      '/src/app/works/watashi-no-kakugo/sns/page.tsx'
+    ],
+    code: `<div className="blog-grid">
+  {blogPosts.map((post, index) => (
+    <Link key={index} href="/works/watashi-no-kakugo/sns" className="blog-card">
+      <div className="blog-image">
+        <div className="blog-placeholder" style={{ background: post.color }}></div>
+      </div>
+      <div className="blog-info">
+        <time className="blog-date">{post.date}</time>
+        <p className="blog-job">{post.job}</p>
+        <h3 className="blog-name">{post.name}</h3>
+        <p className="blog-title">{post.title}</p>
+      </div>
+    </Link>
+  ))}
+</div>
+
+<style jsx>{\`
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 15px;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: #8BC34A;
+  }
+
+  .blog-image {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+
+  .blog-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .blog-info {
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-date {
+    display: block;
+    font-size: 11px;
+    color: #cccccc;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .blog-job {
+    font-size: 12px;
+    color: #777777;
+    margin: 0 0 5px;
+  }
+
+  .blog-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333333;
+    margin: 0 0 10px;
+  }
+
+  .blog-title {
+    font-size: 13px;
+    color: #555555;
+    margin: 0;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+\`}</style>`,
+    prompt: `ブログカードの5カラムグリッドを実装してください。
+
+## 要件
+
+### グリッドレイアウト
+- カラム数: 5（デスクトップ）
+- ギャップ: 16px
+- レスポンシブ:
+  - 1024px以下: 3カラム
+  - 768px以下: 2カラム
+  - 480px以下: 1カラム
+
+### カードデザイン
+- 背景色: #ffffff
+- ボーダー: 1px solid #e8e8e8
+- ボーダー（ホバー）: #8BC34A
+- 角丸: 2px
+- パディング: 18px（情報エリア）
+
+### 画像エリア
+- アスペクト比: 1:1（正方形）
+- 背景色: #f5f5f5
+
+### テキスト階層
+1. 日付（.blog-date）
+   - フォントサイズ: 11px
+   - 色: #cccccc
+   - マージン下: 8px
+
+2. 職業（.blog-job）
+   - フォントサイズ: 12px
+   - 色: #777777
+   - マージン下: 5px
+
+3. 名前（.blog-name）
+   - フォントサイズ: 15px
+   - フォントウェイト: bold
+   - 色: #333333
+   - マージン下: 10px
+
+4. タイトル（.blog-title）
+   - フォントサイズ: 13px
+   - 色: #555555
+   - 行間: 1.6
+   - 3行で省略（-webkit-line-clamp: 3）
+
+### ホバーアニメーション
+- Y軸移動: translateY(-5px)
+- ボックスシャドウ: 0 8px 20px rgba(0, 0, 0, 0.12)
+- ボーダー色変化: #e8e8e8 → #8BC34A
+- トランジション: all 0.3s ease
+
+## 実装手順
+
+1. グリッドコンテナを作成
+   - display: grid
+   - grid-template-columns: repeat(5, 1fr)
+
+2. カード要素を作成
+   - flex-direction: column（縦並び）
+   - 画像 + 情報エリア
+
+3. 画像エリアを実装
+   - aspect-ratio: 1（正方形を保つ）
+
+4. 情報エリアを実装
+   - padding: 18px
+   - flex: 1（残りスペースを使用）
+
+5. テキスト要素を階層的に配置
+   - 日付 → 職業 → 名前 → タイトル
+
+6. タイトルの行数制限
+   - display: -webkit-box
+   - -webkit-line-clamp: 3
+   - -webkit-box-orient: vertical
+
+7. ホバー効果を追加
+   - transform、box-shadow、border-color
+
+8. レスポンシブ対応
+   - メディアクエリでカラム数を変更
+
+## デザインのポイント
+- 5カラムで多くの情報を効率的に表示
+- 正方形画像で視覚的なバランス
+- 階層的なテキスト配置で読みやすさ向上
+- ホバー時のグリーンボーダーでブランドを強調
+- 3行省略で一貫したカード高さ
+- レスポンシブ対応で様々な画面サイズに最適化`,
+    preview: `<div class="grid grid-cols-5 gap-4 max-w-full">
+  <div class="flex flex-col bg-white border border-gray-200 rounded overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#8BC34A]">
+    <div class="w-full aspect-square bg-pink-500"></div>
+    <div class="p-4 flex-1 flex flex-col">
+      <time class="text-xs text-gray-300 mb-2">2025.11.03</time>
+      <p class="text-xs text-gray-600 mb-1">スカッシュプレーヤー</p>
+      <h3 class="text-sm font-bold mb-2">松井千夏</h3>
+      <p class="text-xs text-gray-700 line-clamp-3">神奈川オープン3位</p>
+    </div>
+  </div>
+  <div class="flex flex-col bg-white border border-gray-200 rounded overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#8BC34A]">
+    <div class="w-full aspect-square bg-blue-500"></div>
+    <div class="p-4 flex-1 flex flex-col">
+      <time class="text-xs text-gray-300 mb-2">2025.11.03</time>
+      <p class="text-xs text-gray-600 mb-1">参議院議員</p>
+      <h3 class="text-sm font-bold mb-2">山本一太</h3>
+      <p class="text-xs text-gray-700 line-clamp-3">第35回ぐんまマラソン大会</p>
+    </div>
+  </div>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'fixed-header-green-accent-watashi',
+    title: '固定ヘッダー - グリーンアクセント + ロゴ + ナビ',
+    category: 'レイアウト・構造',
+    description: '画面上部に固定されるヘッダー。グリーンアクセントのロゴ、グローバルナビゲーション、検索フォームを統合。スクロール時も常に表示され、ナビゲーションの軸となる。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/components/works/watashi-no-kakugo/Header.tsx'
+    ],
+    code: `<header className="header">
+  <div className="container">
+    <Link href="/works/watashi-no-kakugo" className="logo">
+      <svg width="40" height="56" viewBox="0 0 40 56" fill="none">
+        <path d="M20 0C20 0 8 12 8 28C8 36.8366 13.1634 44 20 44C26.8366 44 32 36.8366 32 28C32 12 20 0 20 0Z" fill="#8BC34A"/>
+        <ellipse cx="20" cy="50" rx="3" ry="3" fill="#8BC34A"/>
+      </svg>
+      <div className="logo-text">
+        <span className="logo-subtitle">やりたいことを諦めた大人がカッコイイ</span>
+        <span className="logo-title">私のカクゴ</span>
+      </div>
+    </Link>
+
+    <nav className="nav">
+      <Link href="/works/watashi-no-kakugo/about" className="nav-link">私のカクゴとは</Link>
+      <Link href="/works/watashi-no-kakugo/persons" className="nav-link">私のカクゴ一覧</Link>
+      <Link href="/works/watashi-no-kakugo/sns" className="nav-link">ブログ・SNS</Link>
+    </nav>
+
+    <form className="search-form">
+      <input type="search" placeholder="サイト内検索" className="search-input" />
+      <button type="submit" className="search-button">
+        <svg width="18" height="18" viewBox="0 0 18 18">
+          <circle cx="7.5" cy="7.5" r="6" stroke="white" strokeWidth="1.5"/>
+          <path d="M12 12L16.5 16.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</header>
+
+<style jsx>{\`
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-subtitle {
+    font-size: 10px;
+    color: #666666;
+  }
+
+  .logo-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .nav {
+    display: flex;
+    gap: 40px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link {
+    color: #333333;
+    font-size: 16px;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: #8BC34A;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #8BC34A;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .search-form {
+    position: relative;
+  }
+
+  .search-input {
+    width: 220px;
+    height: 38px;
+    padding: 0 46px 0 14px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #fafafa;
+  }
+
+  .search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 46px;
+    background: #999999;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+
+  .search-button:hover {
+    background: #8BC34A;
+  }
+\`}</style>`,
+    prompt: `固定ヘッダーを実装してください。
+
+## 要件
+
+### 基本構造
+- position: fixed（画面上部に固定）
+- 高さ: 80px
+- 背景色: #ffffff
+- ボーダー下: 1px solid #e0e0e0
+- z-index: 1000（他の要素より前面に表示）
+- box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05)
+
+### コンテナ
+- max-width: 1200px
+- margin: 0 auto（中央配置）
+- padding: 0 32px
+- display: flex
+- align-items: center
+- justify-content: space-between
+- gap: 48px
+
+### ロゴエリア（左側）
+- SVGアイコン: 40px × 56px、グリーン（#8BC34A）
+- ロゴテキスト:
+  - サブタイトル: 10px、#666666
+  - タイトル: 26px、bold、#000000
+
+### ナビゲーション（中央）
+- flex: 1（残りスペースを使用）
+- justify-content: center（中央配置）
+- gap: 40px
+- リンク:
+  - font-size: 16px
+  - color: #333333
+  - ホバー時: #8BC34A
+  - アンダーラインアニメーション（::after疑似要素）
+
+### 検索フォーム（右側）
+- 入力幅: 220px
+- 高さ: 38px
+- 背景: #fafafa
+- ボーダー: 1px solid #d0d0d0
+- 検索ボタン: 46px幅、#999999
+- ホバー時: #8BC34A
+
+## 実装手順
+
+1. Header.tsxファイルを作成
+   - 'use client'を追加（styled-jsx使用のため）
+
+2. ヘッダー要素を作成
+   - <header>タグ、position: fixed
+
+3. コンテナを作成
+   - max-width: 1200px、flex配置
+
+4. ロゴを実装
+   - SVGアイコン + テキスト
+   - Linkコンポーネントでラップ
+
+5. ナビゲーションを実装
+   - 3つのリンク
+   - ホバーエフェクト（アンダーライン）
+
+6. 検索フォームを実装
+   - input + button
+   - position: relativeで相対配置
+
+7. styled-jsxでスタイル追加
+
+8. レスポンシブ対応
+   - 768px以下で縦並びに変更
+
+## デザインのポイント
+- 固定ヘッダーでナビゲーションの軸を確立
+- グリーンアクセントでブランドを強調
+- ホバーアニメーションで操作性を向上
+- シンプルで洗練されたデザイン`,
+    preview: `<div class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 shadow-sm z-50">
+  <div class="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between gap-12">
+    <a href="#" class="flex items-center gap-3">
+      <svg width="40" height="56" viewBox="0 0 40 56" fill="none">
+        <path d="M20 0C20 0 8 12 8 28C8 36.8366 13.1634 44 20 44C26.8366 44 32 36.8366 32 28C32 12 20 0 20 0Z" fill="#8BC34A"/>
+        <ellipse cx="20" cy="50" rx="3" ry="3" fill="#8BC34A"/>
+      </svg>
+      <div class="flex flex-col gap-1">
+        <span class="text-xs text-gray-600">やりたいことを諦めた大人がカッコイイ</span>
+        <span class="text-2xl font-bold">私のカクゴ</span>
+      </div>
+    </a>
+    <nav class="flex gap-10 flex-1 justify-center">
+      <a href="#" class="text-gray-800 hover:text-[#8BC34A] transition-colors">私のカクゴとは</a>
+      <a href="#" class="text-gray-800 hover:text-[#8BC34A] transition-colors">私のカクゴ一覧</a>
+      <a href="#" class="text-gray-800 hover:text-[#8BC34A] transition-colors">ブログ・SNS</a>
+    </nav>
+    <form class="relative">
+      <input type="search" placeholder="サイト内検索" class="w-56 h-10 pl-4 pr-12 border border-gray-300 rounded bg-gray-50" />
+      <button class="absolute right-0 top-0 bottom-0 w-12 bg-gray-500 hover:bg-[#8BC34A] rounded-r flex items-center justify-center transition-colors">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="7.5" cy="7.5" r="6" stroke="white" strokeWidth="1.5"/>
+          <path d="M12 12L16.5 16.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>`,
+    relatedTech: ['brand-logo-svg-icon-watashi', 'nav-hover-underline-effect-watashi', 'header-search-form-watashi']
+  },
+  {
+    slug: 'hero-section-person-silhouettes-watashi',
+    title: 'ヒーローセクション - 7人の人物シルエット',
+    category: 'UIコンポーネント',
+    description: '7人の人物を横並びで表示するヒーローセクション。丸みを帯びたシルエットと影で立体感を演出。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx'
+    ],
+    code: `<section className="hero">
+  <div className="hero-persons">
+    {heroPersons.map((person) => (
+      <div key={person.id} className="person-item">
+        <div className="person-placeholder" style={{ background: person.color }}>
+          <div className="person-silhouette"></div>
+        </div>
+        <div className="person-platform"></div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style jsx>{\`
+  .hero {
+    background: #eeeeee;
+    padding: 60px 0 50px;
+    overflow: hidden;
+  }
+
+  .hero-persons {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 24px;
+    padding: 0 32px;
+  }
+
+  .person-placeholder {
+    width: 130px;
+    height: 190px;
+    border-radius: 50% 50% 0 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .person-platform {
+    width: 150px;
+    height: 24px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%);
+    border-radius: 50%;
+    margin-top: -12px;
+  }
+\`}</style>`,
+    prompt: `7人の人物シルエットを表示するヒーローセクションを実装してください。
+
+## 要件
+
+### 基本構造
+1. セクション背景: #eeeeee（ライトグレー）
+2. パディング: 上60px、下50px
+3. コンテナ: max-width 1400px、中央配置
+4. パディング左右: 32px
+
+### 人物配置
+1. 横並びレイアウト（display: flex）
+2. 中央揃え（justify-content: center）
+3. 下揃え（align-items: flex-end）
+4. ギャップ: 24px
+5. 人物数: 7人
+
+### 人物シルエット
+1. サイズ: 130px × 190px
+2. 形状: 上部が丸い（border-radius: 50% 50% 0 0）
+3. ボックスシャドウ: 0 4px 12px rgba(0, 0, 0, 0.1)
+4. オーバーフロー: hidden（角丸を維持）
+5. 背景色: 各人物ごとに異なる色（動的に指定）
+
+### プラットフォーム（影）
+1. サイズ: 150px × 24px
+2. 形状: 楕円形（border-radius: 50%）
+3. 背景: radial-gradient（中央から外側へ透明度が減少）
+   - 中心: rgba(0,0,0,0.18)
+   - 50%: rgba(0,0,0,0.08)
+   - 70%以降: transparent
+4. 位置: 人物の下、margin-top: -12px（重ねる）
+
+## 実装手順
+
+1. ヒーローセクションを作成
+   - <section>タグ、className="hero"
+   - 背景色 #eeeeee、パディング設定
+
+2. コンテナを作成
+   - className="hero-persons"
+   - max-width: 1400px
+   - margin: 0 auto（中央配置）
+
+3. フレックスレイアウトを設定
+   - display: flex
+   - justify-content: center
+   - align-items: flex-end
+   - gap: 24px
+
+4. 人物データを配列で管理
+   - heroPersons配列（id、color等）
+   - map関数で繰り返し生成
+
+5. 各人物要素を作成
+   - .person-item（親要素）
+   - .person-placeholder（シルエット本体）
+   - .person-platform（影）
+
+6. シルエットのスタイリング
+   - 130px × 190px
+   - border-radius: 50% 50% 0 0
+   - box-shadow追加
+   - background色を動的に指定（style属性）
+
+7. プラットフォームのスタイリング
+   - 150px × 24px
+   - radial-gradientで楕円の影
+   - margin-top: -12pxで人物に重ねる
+
+8. レスポンシブ対応（推奨）
+   - 画面幅が狭い場合、人物数を減らすかスクロール可能に
+
+## デザインのポイント
+- 7人の人物で「多様性」と「コミュニティ」を表現
+- 上部が丸い形状で人物の頭部を抽象的に表現
+- 下揃え配置で地面に立っている印象を演出
+- プラットフォームの影で立体感と奥行きを表現
+- ライトグレーの背景で柔らかく親しみやすい雰囲気
+- 各人物の異なる色で個性と多様性を強調
+- 横並び配置で一体感とチームワークを視覚化`,
+    preview: `<div class="bg-[#eeeeee] py-14 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-8 flex justify-center items-end gap-6">
+    <div class="flex flex-col items-center">
+      <div class="w-32 h-48 rounded-t-full bg-pink-500 shadow-md"></div>
+      <div class="w-36 h-6 rounded-full mt-[-12px]" style="background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%)"></div>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="w-32 h-48 rounded-t-full bg-blue-500 shadow-md"></div>
+      <div class="w-36 h-6 rounded-full mt-[-12px]" style="background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%)"></div>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="w-32 h-48 rounded-t-full bg-green-500 shadow-md"></div>
+      <div class="w-36 h-6 rounded-full mt-[-12px]" style="background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%)"></div>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="w-32 h-48 rounded-t-full bg-yellow-500 shadow-md"></div>
+      <div class="w-36 h-6 rounded-full mt-[-12px]" style="background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%)"></div>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="w-32 h-48 rounded-t-full bg-purple-500 shadow-md"></div>
+      <div class="w-36 h-6 rounded-full mt-[-12px]" style="background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%)"></div>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="w-32 h-48 rounded-t-full bg-red-500 shadow-md"></div>
+      <div class="w-36 h-6 rounded-full mt-[-12px]" style="background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%)"></div>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="w-32 h-48 rounded-t-full bg-indigo-500 shadow-md"></div>
+      <div class="w-36 h-6 rounded-full mt-[-12px]" style="background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 70%)"></div>
+    </div>
+  </div>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'sidebar-search-form-watashi',
+    title: 'サイドバー検索フォーム - テキスト + セレクトボックス',
+    category: 'フォーム',
+    description: 'サイドバー固定の検索フォーム。テキスト入力、セレクトボックスを組み合わせた多条件検索UI。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/persons/page.tsx'
+    ],
+    code: `<aside className="sidebar">
+  <h2 className="sidebar-title">検索</h2>
+  <form className="search-form">
+    <div className="form-group">
+      <label className="form-label">名 前：</label>
+      <input type="text" className="form-input" />
+    </div>
+    <div className="form-group">
+      <label className="form-label">肩 書：</label>
+      <input type="text" className="form-input" />
+    </div>
+    <div className="form-group">
+      <label className="form-label">性 別：</label>
+      <select className="form-select">
+        <option value="">選択してください</option>
+        <option value="male">男性</option>
+        <option value="female">女性</option>
+      </select>
+    </div>
+    <button type="submit" className="search-button">検 索</button>
+  </form>
+</aside>
+
+<style jsx>{\`
+  .sidebar {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 4px;
+    position: sticky;
+    top: 92px;
+  }
+
+  .search-button {
+    width: 100%;
+    padding: 12px;
+    background: #8BC34A;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+  }
+\`}</style>`,
+    prompt: `サイドバー検索フォームを実装してください。
+
+## 要件
+
+### 基本構造
+1. コンテナ要素: <aside>タグ
+2. 背景色: #ffffff（白）
+3. パディング: 24px
+4. 角丸: 4px
+5. position: sticky（スクロール時に追従）
+6. top: 92px（ヘッダー高さ + マージン）
+
+### タイトル
+1. セクションタイトル「検索」
+2. className: sidebar-title
+3. マージン下: 20px
+4. フォントサイズ: 18px
+5. フォントウェイト: bold
+
+### フォーム構成
+1. テキスト入力フィールド × 2
+   - 名前
+   - 肩書
+2. セレクトボックス × 1
+   - 性別（選択してください、男性、女性）
+3. 検索ボタン × 1
+
+### フォームグループ
+1. マージン下: 16px
+2. ラベル:
+   - className: form-label
+   - display: block
+   - フォントサイズ: 14px
+   - フォントウェイト: bold
+   - マージン下: 8px
+   - 色: #333333
+
+### 入力フィールド
+1. width: 100%
+2. パディング: 10px 12px
+3. ボーダー: 1px solid #d0d0d0
+4. 角丸: 4px
+5. フォントサイズ: 14px
+6. 背景: #fafafa
+7. フォーカス時: ボーダー色 #8BC34A
+
+### セレクトボックス
+1. width: 100%
+2. パディング: 10px 12px
+3. ボーダー: 1px solid #d0d0d0
+4. 角丸: 4px
+5. フォントサイズ: 14px
+6. 背景: #fafafa
+7. cursor: pointer
+
+### 検索ボタン
+1. width: 100%
+2. パディング: 12px
+3. 背景色: #8BC34A（グリーン）
+4. 文字色: #ffffff（白）
+5. ボーダー: none
+6. 角丸: 4px
+7. フォントウェイト: bold
+8. フォントサイズ: 14px
+9. cursor: pointer
+10. ホバー時: 背景色 #7AA93A（濃いグリーン）
+11. マージン上: 20px
+
+## 実装手順
+
+1. サイドバー要素を作成
+   - <aside>タグ、className="sidebar"
+   - position: sticky、top: 92px
+
+2. タイトルを追加
+   - <h2>タグ、「検索」テキスト
+
+3. フォーム要素を作成
+   - <form>タグ、className="search-form"
+
+4. フォームグループを作成（名前用）
+   - <div className="form-group">
+   - <label>で「名 前：」
+   - <input type="text">
+
+5. フォームグループを作成（肩書用）
+   - <div className="form-group">
+   - <label>で「肩 書：」
+   - <input type="text">
+
+6. フォームグループを作成（性別用）
+   - <div className="form-group">
+   - <label>で「性 別：」
+   - <select>で選択肢
+   - <option>で「選択してください」「男性」「女性」
+
+7. 検索ボタンを追加
+   - <button type="submit">
+   - テキスト「検 索」（全角スペース）
+
+8. styled-jsxでスタイルを追加
+   - .sidebar、.sidebar-title、.form-group等
+   - sticky配置、フォームスタイル、ボタンスタイル
+
+## デザインのポイント
+- stickyポジショニングでスクロール時も常に表示
+- 白背景で清潔感と視認性を確保
+- フォームラベルを太字にして入力項目を明確化
+- 全幅ボタンで押しやすさを重視
+- グリーンの検索ボタンでブランドカラーを強調
+- 淡いグレー背景の入力欄で入力エリアを視覚的に区別
+- ラベルの全角スペースで縦の揃えを美しく`,
+    preview: `<div class="bg-white p-6 rounded border border-gray-100 shadow-sm">
+  <h2 class="text-lg font-bold mb-5">検索</h2>
+  <form class="space-y-4">
+    <div>
+      <label class="block text-sm font-bold mb-2 text-gray-800">名 前：</label>
+      <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded bg-gray-50 text-sm focus:outline-none focus:border-[#8BC34A]" />
+    </div>
+    <div>
+      <label class="block text-sm font-bold mb-2 text-gray-800">肩 書：</label>
+      <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded bg-gray-50 text-sm focus:outline-none focus:border-[#8BC34A]" />
+    </div>
+    <div>
+      <label class="block text-sm font-bold mb-2 text-gray-800">性 別：</label>
+      <select class="w-full px-3 py-2 border border-gray-300 rounded bg-gray-50 text-sm cursor-pointer">
+        <option>選択してください</option>
+        <option>男性</option>
+        <option>女性</option>
+      </select>
+    </div>
+    <button type="submit" class="w-full py-3 bg-[#8BC34A] text-white font-bold rounded hover:bg-[#7AA93A] transition-colors mt-5">
+      検 索
+    </button>
+  </form>
+</div>`,
+    relatedTech: ['two-column-layout-sidebar-watashi']
+  },
+  {
+    slug: 'tab-switching-history-watashi',
+    title: 'タブ切り替え機能 - 来歴セクション',
+    category: 'インタラクション',
+    description: 'useStateを使ったタブ切り替え機能。5つのタブで異なるコンテンツを表示。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/profile/page.tsx'
+    ],
+    code: `const [activeTab, setActiveTab] = useState(1)
+
+<table className="history-num">
+  <tbody>
+    <tr>
+      {[1, 2, 3, 4, 5].map((num) => (
+        <td key={num}>
+          <a
+            href="javascript:void(0)"
+            className={\`hist-link \${activeTab === num ? 'act' : ''}\`}
+            onClick={() => setActiveTab(num)}
+          >
+            {num}
+          </a>
+        </td>
+      ))}
+    </tr>
+  </tbody>
+</table>
+
+<div className="history-doc-wrapper">
+  {historyData.map((item) => (
+    <div
+      key={item.id}
+      style={{ display: activeTab === item.id ? 'block' : 'none' }}
+    >
+      <h3>{item.title}</h3>
+      <p>{item.content}</p>
+    </div>
+  ))}
+</div>
+
+<style jsx>{\`
+  .hist-link.act {
+    background: #8BC34A;
+    color: #ffffff;
+  }
+\`}</style>`,
+    prompt: `タブ切り替え機能を実装してください。
+
+## 要件
+
+### 基本構造
+1. useStateでアクティブタブのIDを管理
+2. タブナビゲーション: <table>要素
+3. コンテンツエリア: 条件付きレンダリング
+4. タブ数: 5つ（1, 2, 3, 4, 5）
+
+### タブナビゲーション
+1. <table className="history-num">
+2. <tbody><tr>で1行のテーブル
+3. 各タブ: <td>要素
+4. リンク要素:
+   - <a href="javascript:void(0)">
+   - className: 'hist-link' + アクティブ時 'act'
+   - onClick: setActiveTab(num)
+
+### タブボタンのスタイル
+1. 通常時:
+   - 背景色: #ffffff または #f5f5f5
+   - 文字色: #333333
+   - パディング: 10px 20px
+   - ボーダー: 1px solid #d0d0d0
+   - cursor: pointer
+   - transition: all 0.3s
+
+2. アクティブ時（.act）:
+   - 背景色: #8BC34A（グリーン）
+   - 文字色: #ffffff（白）
+   - ボーダー: 1px solid #8BC34A
+   - フォントウェイト: bold
+
+3. ホバー時:
+   - 背景色: #f0f0f0（非アクティブ時）
+   - 背景色: #7AA93A（アクティブ時）
+
+### コンテンツエリア
+1. <div className="history-doc-wrapper">
+2. 各コンテンツをmap関数で生成
+3. display制御:
+   - activeTab === item.id の場合: 'block'
+   - それ以外: 'none'
+4. コンテンツ構造:
+   - <h3>タイトル
+   - <p>内容テキスト
+
+### 状態管理
+1. useState初期値: 1（最初のタブがアクティブ）
+2. setActiveTab: タブクリック時に実行
+3. activeTab: 条件付きレンダリングとクラス名に使用
+
+## 実装手順
+
+1. 'use client'ディレクティブを追加
+   - Client Componentで状態管理を使用
+
+2. useStateをインポート
+   - import { useState } from 'react'
+
+3. アクティブタブの状態を定義
+   - const [activeTab, setActiveTab] = useState(1)
+
+4. 来歴データを定義（配列）
+   - historyData配列
+   - 各項目: id、title、content
+
+5. タブナビゲーションを作成
+   - <table className="history-num">
+   - <tbody><tr>
+   - [1, 2, 3, 4, 5].map()で繰り返し
+
+6. 各タブボタンを作成
+   - <td><a>要素
+   - className: 条件付きで'act'追加
+   - onClick: () => setActiveTab(num)
+
+7. コンテンツエリアを作成
+   - <div className="history-doc-wrapper">
+   - historyData.map()で繰り返し
+
+8. 条件付き表示を実装
+   - style={{ display: activeTab === item.id ? 'block' : 'none' }}
+
+9. styled-jsxでスタイル追加
+   - .hist-link、.hist-link.act
+   - タブのアクティブ状態を視覚化
+
+## デザインのポイント
+- アクティブタブをグリーン背景で明確に識別
+- シンプルな数字表記で直感的な操作性
+- スムーズなトランジションで洗練された印象
+- テーブルレイアウトで均等な幅のタブ配置
+- display制御でシンプルな実装（アニメーション不要な場合）
+- useStateによるReactの標準的な状態管理パターン
+- ブランドカラー（グリーン）でUI全体の統一感を維持`,
+    preview: `<div>
+  <table class="w-full mb-6">
+    <tbody>
+      <tr class="flex gap-2">
+        <td class="flex-1">
+          <a href="#" class="block text-center py-2 px-4 bg-[#8BC34A] text-white font-bold border border-[#8BC34A] rounded transition-colors">1</a>
+        </td>
+        <td class="flex-1">
+          <a href="#" class="block text-center py-2 px-4 bg-white text-gray-800 border border-gray-300 rounded hover:bg-gray-50 transition-colors">2</a>
+        </td>
+        <td class="flex-1">
+          <a href="#" class="block text-center py-2 px-4 bg-white text-gray-800 border border-gray-300 rounded hover:bg-gray-50 transition-colors">3</a>
+        </td>
+        <td class="flex-1">
+          <a href="#" class="block text-center py-2 px-4 bg-white text-gray-800 border border-gray-300 rounded hover:bg-gray-50 transition-colors">4</a>
+        </td>
+        <td class="flex-1">
+          <a href="#" class="block text-center py-2 px-4 bg-white text-gray-800 border border-gray-300 rounded hover:bg-gray-50 transition-colors">5</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="p-4 bg-gray-50 rounded border border-gray-200">
+    <h3 class="text-lg font-bold mb-2">タブ1の内容</h3>
+    <p class="text-sm text-gray-700">ここにコンテンツが表示されます。</p>
+  </div>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'two-column-layout-sidebar-watashi',
+    title: '2カラムレイアウト - サイドバー（280px）+ メイン',
+    category: 'レイアウト・構造',
+    description: '固定幅サイドバーと可変幅メインコンテンツの2カラムレイアウト。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/persons/page.tsx'
+    ],
+    code: `<div className="layout">
+  <aside className="sidebar">
+    {/* サイドバーコンテンツ */}
+  </aside>
+  <div className="main-content">
+    {/* メインコンテンツ */}
+  </div>
+</div>
+
+<style jsx>{\`
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+  }
+
+  @media (max-width: 1024px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+\`}</style>`,
+    prompt: `2カラムレイアウトを実装してください。
+
+## 要件
+
+### 基本構造
+1. レイアウトコンテナ: <div className="layout">
+2. サイドバー: <aside className="sidebar">
+3. メインコンテンツ: <div className="main-content">
+
+### グリッドレイアウト
+1. display: grid
+2. grid-template-columns: 280px 1fr
+   - 左カラム（サイドバー）: 280px固定幅
+   - 右カラム（メイン）: 残りのスペース（1fr）
+3. gap: 40px（カラム間のギャップ）
+
+### サイドバー仕様
+1. 固定幅: 280px
+2. 内容: 検索フォーム等
+3. position: stickyは個別のコンポーネントで設定
+4. 背景色等はサイドバー内のコンポーネントで設定
+
+### メインコンテンツ仕様
+1. 可変幅: 1fr（残りのスペースを使用）
+2. 内容: 主要なコンテンツ（カード一覧等）
+3. min-width: 0（グリッドの縮小を許可）
+
+### レスポンシブ対応
+1. ブレークポイント: 1024px以下
+2. 変更内容:
+   - grid-template-columns: 1fr（1カラムに変更）
+   - サイドバーが上、メインが下に配置
+   - gap: 30px（縦方向のギャップに変更）
+
+## 実装手順
+
+1. レイアウトコンテナを作成
+   - <div className="layout">
+   - グリッドレイアウトを適用
+
+2. サイドバーを配置
+   - <aside className="sidebar">
+   - 280px固定幅
+   - 検索フォームやフィルター等を内包
+
+3. メインコンテンツを配置
+   - <div className="main-content">
+   - 1fr（残りスペース）
+   - カード一覧やメインコンテンツを配置
+
+4. グリッドスタイルを定義
+   - grid-template-columns: 280px 1fr
+   - gap: 40px
+
+5. レスポンシブメディアクエリを追加
+   - @media (max-width: 1024px)
+   - grid-template-columns: 1fr
+   - gap: 30px
+
+6. min-width設定（推奨）
+   - .main-content { min-width: 0 }
+   - グリッドアイテムの縮小を許可
+
+## デザインのポイント
+- サイドバー固定幅（280px）で安定したフィルターエリア
+- メインコンテンツは可変幅で画面を有効活用
+- 40pxのギャップで適度な余白と視覚的な分離
+- グリッドレイアウトで簡潔で保守しやすいコード
+- レスポンシブ対応で小画面でも使いやすさを維持
+- 縦並び時は検索フォームが上に来て自然な操作順序
+- min-width: 0でコンテンツのはみ出しを防止`,
+    preview: `<div class="grid grid-cols-[280px_1fr] gap-10">
+  <aside class="bg-white p-6 rounded border border-gray-100">
+    <h3 class="font-bold mb-4">サイドバー</h3>
+    <p class="text-sm text-gray-600">検索フォーム等</p>
+  </aside>
+  <div class="bg-white p-6 rounded border border-gray-100">
+    <h3 class="font-bold mb-4">メインコンテンツ</h3>
+    <p class="text-sm text-gray-600">カード一覧やコンテンツがここに表示されます。</p>
+  </div>
+</div>`,
+    relatedTech: ['sidebar-search-form-watashi']
+  },
+  {
+    slug: 'section-title-green-underline-watashi',
+    title: 'セクションタイトル - グリーンアンダーライン',
+    category: 'UIコンポーネント',
+    description: 'セクションの見出しに使用するタイトルデザイン。左端にグリーンのアンダーラインでアクセント。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx',
+      '/src/app/works/watashi-no-kakugo/profile/page.tsx'
+    ],
+    code: `<h2 className="section-title">来歴</h2>
+
+<style jsx>{\`
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000000;
+    position: relative;
+  }
+
+  .section-title::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #8BC34A;
+  }
+\`}</style>`,
+    prompt: `セクションタイトルを実装してください。
+
+## 要件
+
+### 基本スタイル
+1. フォントサイズ: 18px
+2. フォントウェイト: bold
+3. マージン: 0 0 25px（下に25px）
+4. パディング下: 10px
+5. position: relative（擬似要素の基準点）
+
+### ボーダー仕様
+1. 下ボーダー: 2px solid #000000（黒）
+2. 全幅に適用
+
+### グリーンアンダーライン
+1. 実装方法: ::before擬似要素
+2. 幅: 50px
+3. 高さ: 2px
+4. 背景色: #8BC34A（グリーン）
+5. 位置:
+   - position: absolute
+   - bottom: -2px（ボーダーに重ねる）
+   - left: 0（左端）
+
+## 実装手順
+
+1. タイトル要素を作成
+   - <h2 className="section-title">
+   - テキスト: 例「来歴」「お気に入り」等
+
+2. 基本スタイルを設定
+   - font-size: 18px
+   - font-weight: bold
+   - margin: 0 0 25px
+
+3. パディングとボーダーを追加
+   - padding-bottom: 10px
+   - border-bottom: 2px solid #000000
+
+4. position relativeを設定
+   - ::before擬似要素の配置基準
+
+5. ::before疑似要素を作成
+   - content: ''（空）
+   - position: absolute
+   - bottom: -2px、left: 0
+   - width: 50px、height: 2px
+   - background: #8BC34A
+
+6. styled-jsxでスタイル追加
+   - .section-title、.section-title::before
+
+## デザインのポイント
+- 黒の下ボーダーでセクションを明確に区切り
+- 左端のグリーンラインでブランドカラーを強調
+- 50pxの短いアクセントで洗練された印象
+- ::before疑似要素で実装、追加のHTMLタグ不要
+- ボーダーに重ねることで一体感のあるデザイン
+- 18px boldで視認性と階層性を確保`,
+    preview: `<h2 class="text-lg font-bold mb-6 pb-2 border-b-2 border-black relative">
+  来歴
+  <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-[#8BC34A] translate-y-0.5"></span>
+</h2>`,
+    relatedTech: []
+  },
+  {
+    slug: 'video-placeholder-play-button-watashi',
+    title: '動画プレースホルダー - 再生ボタン + 時間表示',
+    category: 'UIコンポーネント',
+    description: '動画のサムネイル表示用プレースホルダー。中央に再生ボタン、右下に時間表示。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx',
+      '/src/app/works/watashi-no-kakugo/profile/page.tsx'
+    ],
+    code: `<div className="video-placeholder">
+  <svg width="60" height="60" viewBox="0 0 60 60">
+    <circle cx="30" cy="30" r="30" fill="rgba(0,0,0,0.6)"/>
+    <path d="M23 18L42 30L23 42V18Z" fill="white"/>
+  </svg>
+  <span className="video-time">01:13</span>
+</div>
+
+<style jsx>{\`
+  .video-placeholder {
+    position: relative;
+    width: 300px;
+    height: 290px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .video-time {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+\`}</style>`,
+    prompt: `動画プレースホルダーを実装してください。
+
+## 要件
+
+### 基本構造
+1. コンテナ: <div className="video-placeholder">
+2. 再生ボタン（SVG）
+3. 時間表示（<span>）
+
+### コンテナスタイル
+1. position: relative（時間表示の配置基準）
+2. サイズ: 300px × 290px
+3. 背景: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+   - 紫系のグラデーション
+   - 135度の角度
+4. display: flex
+5. align-items: center、justify-content: center（中央配置）
+6. cursor: pointer（クリック可能を示す）
+
+### 再生ボタン（SVG）
+1. サイズ: 60px × 60px
+2. viewBox: "0 0 60 60"
+3. 構造:
+   - 円形背景: <circle>
+   - 三角形（再生アイコン）: <path>
+
+### 円形背景仕様
+1. <circle cx="30" cy="30" r="30">
+2. fill: rgba(0, 0, 0, 0.6)（半透明の黒）
+3. 中心: (30, 30)
+4. 半径: 30
+
+### 三角形（再生アイコン）仕様
+1. <path d="M23 18L42 30L23 42V18Z">
+2. fill: white（白）
+3. 右向きの三角形
+4. 頂点: (23,18)、(42,30)、(23,42)
+
+### 時間表示スタイル
+1. className: video-time
+2. position: absolute
+3. 位置:
+   - bottom: 12px（下から12px）
+   - right: 12px（右から12px）
+4. 背景: rgba(0, 0, 0, 0.75)（半透明の黒）
+5. 色: white（白）
+6. パディング: 4px 8px
+7. 角丸: 3px
+8. フォントサイズ: 11px
+
+## 実装手順
+
+1. コンテナ要素を作成
+   - <div className="video-placeholder">
+   - position: relative
+
+2. 背景グラデーションを設定
+   - linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+   - 紫からピンク紫へのグラデーション
+
+3. flexレイアウトを設定
+   - display: flex
+   - align-items: center、justify-content: center
+
+4. SVG再生ボタンを追加
+   - <svg width="60" height="60">
+   - 中央に配置
+
+5. 円形背景を作成
+   - <circle>要素
+   - 半透明の黒背景
+
+6. 三角形アイコンを作成
+   - <path>要素
+   - 白色の再生アイコン
+
+7. 時間表示を追加
+   - <span className="video-time">
+   - position: absolute、右下配置
+
+8. styled-jsxでスタイル追加
+
+## デザインのポイント
+- グラデーション背景で動画プレビューの視覚的魅力
+- 半透明の黒円で再生ボタンを目立たせる
+- 白い三角形で「再生」を直感的に伝達
+- 右下の時間表示で動画の長さを明示
+- cursor: pointerでインタラクティブ性を示唆
+- 300px × 290pxで適度なサイズ感`,
+    preview: `<div class="relative w-full h-48 bg-gradient-to-br from-purple-500 to-indigo-600 rounded flex items-center justify-center cursor-pointer">
+  <svg width="60" height="60" viewBox="0 0 60 60">
+    <circle cx="30" cy="30" r="30" fill="rgba(0,0,0,0.6)"/>
+    <path d="M23 18L42 30L23 42V18Z" fill="white"/>
+  </svg>
+  <span class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded">01:13</span>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'notice-banner-watashi',
+    title: 'お知らせバナー - 全幅テキスト通知',
+    category: 'UIコンポーネント',
+    description: '重要なお知らせを表示する全幅バナー。シンプルなテキスト表示で目立たせる。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx'
+    ],
+    code: `<div className="notice">
+  2023年11月10日より「覚悟の瞬間」は「私のカクゴ」に変更になります。
+</div>
+
+<style jsx>{\`
+  .notice {
+    background: #ffffff;
+    text-align: center;
+    padding: 22px 32px;
+    color: #666666;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 1.6;
+  }
+\`}</style>`,
+    prompt: `お知らせバナーを実装してください。
+
+## 要件
+
+### 基本スタイル
+1. 背景色: #ffffff（白）
+2. テキスト中央揃え: text-align: center
+3. パディング: 22px 32px（上下22px、左右32px）
+4. 文字色: #666666（グレー）
+5. フォントサイズ: 14px
+6. 行間: 1.6
+
+### ボーダー
+1. 下ボーダー: 1px solid #f0f0f0（淡いグレー）
+2. 目的: コンテンツとの視覚的分離
+
+## 実装手順
+
+1. バナー要素を作成
+   - <div className="notice">
+   - 全幅バナー
+
+2. 背景色とパディングを設定
+   - background: #ffffff
+   - padding: 22px 32px
+
+3. テキストを中央揃え
+   - text-align: center
+
+4. テキストスタイルを設定
+   - color: #666666
+   - font-size: 14px
+   - line-height: 1.6
+
+5. 下ボーダーを追加
+   - border-bottom: 1px solid #f0f0f0
+
+6. お知らせテキストを配置
+   - 例: 「2023年11月10日より「覚悟の瞬間」は「私のカクゴ」に変更になります。」
+
+7. styled-jsxでスタイル追加
+
+## デザインのポイント
+- 白背景で清潔感と視認性を確保
+- 中央揃えで重要な情報を目立たせる
+- グレー色（#666666）で主張しすぎない
+- 22pxのパディングで適度な余白
+- 淡いボーダーで自然な区切り
+- 14pxフォントで読みやすさを維持
+- 行間1.6で複数行でも読みやすく
+- 全幅バナーでサイト全体に通知`,
+    preview: `<div class="bg-white text-center py-5 px-8 text-gray-600 text-sm border-b border-gray-100">
+  2023年11月10日より「覚悟の瞬間」は「私のカクゴ」に変更になります。
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'header-search-form-watashi',
+    title: 'ヘッダー検索フォーム - グレーボタン',
+    category: 'フォーム',
+    description: 'ヘッダー右端に配置される検索フォーム。グレーの検索ボタン付き。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/components/works/watashi-no-kakugo/Header.tsx'
+    ],
+    code: `<form className="search-form">
+  <input
+    type="search"
+    placeholder="サイト内検索"
+    className="search-input"
+  />
+  <button type="submit" className="search-button">
+    <svg width="18" height="18" viewBox="0 0 18 18">
+      <circle cx="7.5" cy="7.5" r="6" stroke="white" strokeWidth="1.5"/>
+      <path d="M12 12L16.5 16.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  </button>
+</form>
+
+<style jsx>{\`
+  .search-input {
+    width: 220px;
+    height: 38px;
+    padding: 0 46px 0 14px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #fafafa;
+  }
+
+  .search-button {
+    position: absolute;
+    right: 0;
+    width: 46px;
+    background: #999999;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .search-button:hover {
+    background: #8BC34A;
+  }
+\`}</style>`,
+    prompt: `ヘッダー検索フォームを実装してください。
+
+## 要件
+
+### 基本構造
+1. フォーム要素: <form className="search-form">
+2. 入力フィールド: <input type="search">
+3. 検索ボタン: <button type="submit">
+4. レイアウト: position relativeで入力とボタンを重ねる
+
+### 入力フィールド仕様
+1. type: search
+2. placeholder: "サイト内検索"
+3. className: search-input
+4. 幅: 220px
+5. 高さ: 38px
+6. パディング: 左14px、右46px（ボタンのスペース）
+7. ボーダー: 1px solid #d0d0d0
+8. 角丸: 4px
+9. 背景色: #fafafa（淡いグレー）
+10. フォントサイズ: 14px
+
+### 検索ボタン仕様
+1. type: submit
+2. className: search-button
+3. position: absolute
+4. right: 0、top: 0、bottom: 0（入力欄の右端に配置）
+5. 幅: 46px
+6. 背景色: #999999（グレー）
+7. ボーダー: none
+8. 角丸: 右側のみ 4px（0 4px 4px 0）
+9. cursor: pointer
+
+### SVGアイコン
+1. サイズ: 18px × 18px
+2. 虫眼鏡デザイン:
+   - 円: cx="7.5" cy="7.5" r="6"
+   - 柄: d="M12 12L16.5 16.5"
+3. ストローク: white
+4. strokeWidth: 1.5
+5. strokeLinecap: round（柄のみ）
+
+### ホバーエフェクト
+1. 検索ボタンホバー時:
+   - 背景色: #999999 → #8BC34A（グリーン）
+   - トランジション: 0.3s ease
+
+## 実装手順
+
+1. フォーム要素を作成
+   - <form className="search-form">
+   - position: relativeを設定
+
+2. 入力フィールドを追加
+   - <input type="search">
+   - 幅220px、高さ38px
+   - パディング調整（右側にボタンのスペース）
+
+3. 検索ボタンを追加
+   - <button type="submit">
+   - position: absolute、right: 0
+   - 幅46px、全高
+
+4. SVGアイコンを作成
+   - <svg>タグで虫眼鏡
+   - <circle>で円部分
+   - <path>で柄部分
+   - stroke="white"で白色
+
+5. styled-jsxでスタイル追加
+   - .search-form: position relative
+   - .search-input: 入力欄スタイル
+   - .search-button: ボタンスタイル
+   - .search-button:hover: ホバー時グリーン
+
+6. 右側の角丸調整
+   - border-radius: 0 4px 4px 0
+   - 入力欄と一体感のあるデザイン
+
+## デザインのポイント
+- 淡いグレー背景（#fafafa）で入力欄を視覚的に区別
+- 通常時はグレーボタン（#999999）で控えめに
+- ホバー時にグリーン（#8BC34A）でブランドを強調
+- position absoluteで入力欄とボタンを一体化
+- 右側46pxのパディングでボタンと文字が重ならない
+- SVGアイコンでシンプルかつ明確な検索機能を表現
+- トランジション効果で滑らかな操作感`,
+    preview: `<form class="relative">
+  <input
+    type="search"
+    placeholder="サイト内検索"
+    class="w-56 h-10 pl-4 pr-12 border border-gray-300 rounded bg-gray-50 text-sm focus:outline-none focus:border-gray-400"
+  />
+  <button
+    type="submit"
+    class="absolute right-0 top-0 bottom-0 w-12 bg-gray-500 hover:bg-[#8BC34A] rounded-r flex items-center justify-center transition-colors duration-300"
+  >
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <circle cx="7.5" cy="7.5" r="6" stroke="white" stroke-width="1.5"/>
+      <path d="M12 12L16.5 16.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+</form>`,
+    relatedTech: ['fixed-header-green-accent-watashi']
+  },
+  {
+    slug: 'footer-navigation-watashi',
+    title: 'フッターナビゲーション - 横並びリンク',
+    category: 'UIコンポーネント',
+    description: 'フッターに配置される横並びのナビゲーションリンク。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/components/works/watashi-no-kakugo/Footer.tsx'
+    ],
+    code: `<footer className="footer">
+  <nav className="footer-nav">
+    <Link href="/works/watashi-no-kakugo/terms" className="footer-link">
+      サイトご利用にあたって
+    </Link>
+    <Link href="/works/watashi-no-kakugo/terms/media-policy" className="footer-link">
+      メディアポリシー
+    </Link>
+  </nav>
+  <p className="copyright">
+    Copyright © KAKUGO.TV. All rights reserved.
+  </p>
+</footer>
+
+<style jsx>{\`
+  .footer {
+    background: #f8f8f8;
+    padding: 36px 32px 40px;
+    margin-top: 100px;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  .footer-link {
+    color: #666666;
+    font-size: 13px;
+  }
+
+  .footer-link:hover {
+    color: #8BC34A;
+  }
+\`}</style>`,
+    prompt: `フッターナビゲーションを実装してください。
+
+## 要件
+
+### 基本構造
+1. フッター要素: <footer className="footer">
+2. ナビゲーション: <nav className="footer-nav">
+3. リンク: <Link>コンポーネント
+4. コピーライト: <p className="copyright">
+
+### フッタースタイル
+1. 背景色: #f8f8f8（淡いグレー）
+2. パディング: 上36px、左右32px、下40px
+3. マージン上: 100px（メインコンテンツとの間隔）
+4. ボーダー上: 1px solid #e8e8e8
+5. テキスト中央揃え
+
+### ナビゲーション構造
+1. <nav className="footer-nav">
+2. 横並びレイアウト（display: flex）
+3. 中央揃え（justify-content: center）
+4. ギャップ: 24px
+5. マージン下: 20px
+
+### リンクスタイル
+1. className: footer-link
+2. 色: #666666（グレー）
+3. フォントサイズ: 13px
+4. text-decoration: none
+5. transition: color 0.3s
+
+### ホバーエフェクト
+1. リンクホバー時:
+   - 色: #666666 → #8BC34A（グリーン）
+
+### コピーライト
+1. className: copyright
+2. フォントサイズ: 12px
+3. 色: #999999（淡いグレー）
+4. マージン: 0
+5. テキスト中央揃え
+
+## 実装手順
+
+1. フッター要素を作成
+   - <footer className="footer">
+   - 背景色、パディング設定
+
+2. ナビゲーション要素を追加
+   - <nav className="footer-nav">
+   - flexレイアウトで横並び
+
+3. リンクを追加
+   - <Link href="...">コンポーネント
+   - 例: 「サイトご利用にあたって」「メディアポリシー」
+
+4. コピーライトを追加
+   - <p className="copyright">
+   - 例: "Copyright © KAKUGO.TV. All rights reserved."
+
+5. styled-jsxでスタイル追加
+   - .footer: 背景、パディング、ボーダー
+   - .footer-nav: flex配置
+   - .footer-link: リンクスタイル、ホバー
+   - .copyright: テキストスタイル
+
+6. レスポンシブ対応（推奨）
+   - モバイル: ナビゲーションを縦並びに変更
+   - @media (max-width: 768px)
+
+## デザインのポイント
+- 淡いグレー背景（#f8f8f8）で控えめな存在感
+- 上部100pxマージンでメインコンテンツと明確に分離
+- 横並びナビゲーションで簡潔な情報配置
+- ホバー時のグリーンでブランドカラーを統一
+- 小さめフォント（13px）でフッターらしい控えめさ
+- 中央揃えで左右対称の美しさ
+- 細いボーダーで視覚的な区切り`,
+    preview: `<footer class="bg-gray-50 pt-9 px-8 pb-10 mt-24 border-t border-gray-200 text-center">
+  <nav class="flex justify-center gap-6 mb-5">
+    <a href="#" class="text-gray-600 text-sm hover:text-[#8BC34A] transition-colors">
+      サイトご利用にあたって
+    </a>
+    <a href="#" class="text-gray-600 text-sm hover:text-[#8BC34A] transition-colors">
+      メディアポリシー
+    </a>
+  </nav>
+  <p class="text-xs text-gray-500 m-0">
+    Copyright © KAKUGO.TV. All rights reserved.
+  </p>
+</footer>`,
+    relatedTech: []
+  },
+  {
+    slug: 'update-card-circular-image-watashi',
+    title: '更新情報カード - 円形画像 + 日付 + 名前',
+    category: 'UIコンポーネント',
+    description: '更新情報を表示するカードコンポーネント。円形画像と日付、名前を横並びに配置。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx'
+    ],
+    code: `<Link href="/works/watashi-no-kakugo/profile" className="update-item">
+  <div className="update-image">
+    <div className="update-placeholder" style={{ background: '#E91E63' }}></div>
+  </div>
+  <div className="update-content">
+    <time className="update-date">2025.10.01</time>
+    <p className="update-name">奈良岡桂織 吉中市商</p>
+  </div>
+</Link>
+
+<style jsx>{\`
+  .update-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .update-item:hover {
+    background: #fafafa;
+  }
+
+  .update-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .update-date {
+    font-size: 11px;
+    color: #999999;
+  }
+
+  .update-name {
+    font-size: 13px;
+    color: #333333;
+  }
+\`}</style>`,
+    prompt: `更新情報カードを実装してください。
+
+## 要件
+
+### 基本構造
+1. リンク要素: <Link className="update-item">
+2. 画像エリア: <div className="update-image">
+3. コンテンツエリア: <div className="update-content">
+
+### カード全体のスタイル
+1. display: flex
+2. align-items: center（縦中央揃え）
+3. gap: 12px（画像とコンテンツの間隔）
+4. padding: 12px
+5. transition: background 0.2s
+6. border-bottom: 1px solid #f5f5f5（カード間の区切り）
+
+### ホバーエフェクト
+1. background: transparent → #fafafa
+2. transition: 0.2s
+3. マウスオーバーで背景色が変わる
+
+### 画像エリア仕様
+1. className: update-image
+2. サイズ: 60px × 60px
+3. border-radius: 50%（円形）
+4. overflow: hidden
+5. flex-shrink: 0（縮小防止）
+
+### 画像プレースホルダー
+1. className: update-placeholder
+2. サイズ: 100%（親要素に合わせる）
+3. 背景色: 動的に指定（例: #E91E63）
+
+### コンテンツエリア仕様
+1. className: update-content
+2. flex: 1（残りスペースを使用）
+
+### 日付スタイル
+1. <time className="update-date">
+2. フォントサイズ: 11px
+3. 色: #999999（淡いグレー）
+4. display: block（1行目に配置）
+5. マージン下: 4px
+
+### 名前スタイル
+1. <p className="update-name">
+2. フォントサイズ: 13px
+3. 色: #333333（濃いグレー）
+4. margin: 0
+
+## 実装手順
+
+1. リンク要素を作成
+   - <Link href="...">
+   - className="update-item"
+
+2. flexレイアウトを設定
+   - display: flex
+   - align-items: center
+   - gap: 12px
+
+3. 画像エリアを作成
+   - <div className="update-image">
+   - 60px × 60px、円形
+
+4. 画像プレースホルダーを配置
+   - <div className="update-placeholder">
+   - style={{ background: color }}
+
+5. コンテンツエリアを作成
+   - <div className="update-content">
+   - flex: 1
+
+6. 日付を追加
+   - <time className="update-date">
+   - 例: "2025.10.01"
+
+7. 名前を追加
+   - <p className="update-name">
+   - 例: "奈良岡桂織 吉中市商"
+
+8. ホバーエフェクトを設定
+   - .update-item:hover { background: #fafafa }
+
+9. ボーダーを追加
+   - border-bottom: 1px solid #f5f5f5
+
+10. styled-jsxでスタイル追加
+
+## デザインのポイント
+- 円形画像（60px）でコンパクトに人物を表示
+- flexレイアウトで横並び配置
+- 日付を淡いグレーで控えめに
+- 名前を濃いグレーで主要情報として強調
+- ホバー時の背景変化で操作性を向上
+- 細いボーダーで各カードを区切り
+- 12pxのパディングで適度な余白
+- transition 0.2sでスムーズな操作感`,
+    preview: `<div class="flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors border-b">
+  <div class="w-15 h-15 rounded-full bg-pink-500 flex-shrink-0"></div>
+  <div class="flex-1">
+    <time class="text-xs text-gray-500 block">2025.10.01</time>
+    <p class="text-sm text-gray-800">奈良岡桂織 吉中市商</p>
+  </div>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'float-two-column-layout-watashi',
+    title: 'フロート2カラムレイアウト - 左右480px',
+    category: 'レイアウト・構造',
+    description: 'float を使った2カラムレイアウト。左右それぞれ480px固定幅。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/profile/page.tsx'
+    ],
+    code: `<div className="content-wrapper">
+  <div className="left-column">
+    {/* 左カラム */}
+  </div>
+  <div className="right-column">
+    {/* 右カラム */}
+  </div>
+  <div className="clear"></div>
+</div>
+
+<style jsx>{\`
+  .left-column {
+    width: 480px;
+    float: left;
+  }
+
+  .right-column {
+    width: 480px;
+    float: right;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  @media (max-width: 1024px) {
+    .left-column,
+    .right-column {
+      width: 100%;
+      float: none;
+    }
+  }
+\`}</style>`,
+    prompt: `フロート2カラムレイアウトを実装してください。
+
+## 要件
+
+### 基本構造
+1. コンテナ要素: <div className="content-wrapper">
+2. 左カラム: <div className="left-column">
+3. 右カラム: <div className="right-column">
+4. クリア要素: <div className="clear">（float解除用）
+
+### レイアウト仕様
+1. 左カラム:
+   - 幅: 480px固定
+   - float: left
+2. 右カラム:
+   - 幅: 480px固定
+   - float: right
+3. 合計幅: 960px（480px + 480px）
+4. ギャップ: floatの特性上、中央に自然な余白
+
+### クリア要素
+1. className: clear
+2. clear: both
+3. 目的: フロートの解除、親要素の高さ確保
+
+### レスポンシブ対応
+1. ブレークポイント: 1024px以下
+2. 変更内容:
+   - .left-column、.right-column:
+     - width: 100%
+     - float: none
+     - 縦並びに変更
+
+## 実装手順
+
+1. コンテナ要素を作成
+   - <div className="content-wrapper">
+   - 子要素をラップ
+
+2. 左カラムを作成
+   - <div className="left-column">
+   - 幅480px、float: left
+
+3. 右カラムを作成
+   - <div className="right-column">
+   - 幅480px、float: right
+
+4. クリア要素を追加
+   - <div className="clear">
+   - clear: both
+   - 重要: 必ず左右カラムの後に配置
+
+5. styled-jsxでスタイル追加
+   - .left-column: width, float left
+   - .right-column: width, float right
+   - .clear: clear both
+
+6. レスポンシブメディアクエリを追加
+   - @media (max-width: 1024px)
+   - floatを解除、100%幅に
+
+7. 各カラムにコンテンツを配置
+   - テキスト、画像、その他の要素
+
+## デザインのポイント
+- float手法は古典的だが確実なレイアウト手法
+- 左右それぞれ480pxで均等な配置
+- float: leftとfloat: rightで自然な中央ギャップ
+- clear: bothで親要素の高さ崩れを防止
+- レスポンシブ対応で小画面でも使いやすさを維持
+- Grid/Flexboxが使えない環境での代替手段
+- 左右の独立した配置（float特性を活用）
+
+## 注意点
+- clear要素を忘れると親要素の高さが0になる
+- float解除を適切に行う
+- モダンブラウザではGrid/Flexboxが推奨されるが、
+  レガシーブラウザ対応や特定のデザイン要件で有用`,
+    preview: `<div>
+  <div class="flex justify-between gap-8 mb-4">
+    <div class="w-full max-w-[480px] bg-white p-6 rounded border border-gray-200">
+      <h3 class="font-bold mb-3">左カラム</h3>
+      <p class="text-sm text-gray-600">480px固定幅のコンテンツエリア</p>
+    </div>
+    <div class="w-full max-w-[480px] bg-white p-6 rounded border border-gray-200">
+      <h3 class="font-bold mb-3">右カラム</h3>
+      <p class="text-sm text-gray-600">480px固定幅のコンテンツエリア</p>
+    </div>
+  </div>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'brand-logo-svg-icon-watashi',
+    title: 'ブランドロゴ - SVGアイコン + テキスト',
+    category: 'UIコンポーネント',
+    description: 'グリーンのSVGアイコンとテキストを組み合わせたロゴデザイン。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/components/works/watashi-no-kakugo/Header.tsx'
+    ],
+    code: `<Link href="/works/watashi-no-kakugo" className="logo">
+  <svg width="40" height="56" viewBox="0 0 40 56" fill="none">
+    <path d="M20 0C20 0 8 12 8 28C8 36.8366 13.1634 44 20 44C26.8366 44 32 36.8366 32 28C32 12 20 0 20 0Z" fill="#8BC34A"/>
+    <ellipse cx="20" cy="50" rx="3" ry="3" fill="#8BC34A"/>
+  </svg>
+  <div className="logo-text">
+    <span className="logo-subtitle">やりたいことを諦めた大人がカッコイイ</span>
+    <span className="logo-title">私のカクゴ</span>
+  </div>
+</Link>`,
+    prompt: `ブランドロゴを実装してください。
+
+## 要件
+
+### 基本構造
+1. コンテナ: <Link href="/">
+2. レイアウト: display flex、横並び
+3. SVGアイコン + テキストエリア
+
+### SVGアイコン仕様
+1. サイズ: 40px × 56px
+2. viewBox: "0 0 40 56"
+3. fill: none（デフォルト）
+4. デザイン:
+   - 雫型のシルエット（<path>）
+   - 下部の小さな点（<ellipse>）
+5. 色: #8BC34A（グリーン）
+
+### SVGパス詳細
+1. メインシルエット:
+   - <path d="M20 0C20 0 8 12 8 28C8 36.8366 13.1634 44 20 44C26.8366 44 32 36.8366 32 28C32 12 20 0 20 0Z" fill="#8BC34A"/>
+   - 上部から広がる雫型
+2. 下部の点:
+   - <ellipse cx="20" cy="50" rx="3" ry="3" fill="#8BC34A"/>
+   - 中心点: (20, 50)
+   - 半径: x=3、y=3
+
+### テキストエリア構造
+1. className: logo-text
+2. display: flex、flex-direction: column
+3. gap: 1-2px（サブタイトルとタイトルの間隔）
+
+### サブタイトルスタイル
+1. className: logo-subtitle
+2. フォントサイズ: 10px
+3. 色: #666666（グレー）
+4. テキスト: 「やりたいことを諦めた大人がカッコイイ」
+
+### タイトルスタイル
+1. className: logo-title
+2. フォントサイズ: 26px
+3. フォントウェイト: bold
+4. 色: #000000（黒）
+5. テキスト: 「私のカクゴ」
+
+### ロゴ全体のレイアウト
+1. display: flex
+2. align-items: center（縦中央揃え）
+3. gap: 12px（アイコンとテキストの間隔）
+4. text-decoration: none（リンクの下線を削除）
+
+## 実装手順
+
+1. Linkコンポーネントを作成
+   - href="/works/watashi-no-kakugo"（ホームページ）
+   - className="logo"
+
+2. SVG要素を追加
+   - <svg width="40" height="56" viewBox="0 0 40 56" fill="none">
+   - グリーン（#8BC34A）で塗りつぶし
+
+3. SVGパスを定義
+   - <path>で雫型シルエット
+   - <ellipse>で下部の点
+
+4. テキストエリアを作成
+   - <div className="logo-text">
+   - flex-direction: column
+
+5. サブタイトルを追加
+   - <span className="logo-subtitle">
+   - 10px、#666666
+
+6. タイトルを追加
+   - <span className="logo-title">
+   - 26px、bold、#000000
+
+7. styled-jsxでスタイル追加
+   - .logo、.logo-text、.logo-subtitle、.logo-title
+
+## デザインのポイント
+- SVGアイコンでブランドの独自性を表現
+- グリーン（#8BC34A）でブランドカラーを統一
+- 雫型は「覚悟」の重みと決意を象徴
+- サブタイトルで理念を伝える
+- タイトルを大きく（26px）してブランド名を強調
+- 縦に並べたテキストで情報の階層化
+- アイコンとテキストのバランスの良い配置`,
+    preview: `<div class="flex items-center gap-3">
+  <svg width="40" height="56" viewBox="0 0 40 56" fill="none">
+    <path d="M20 0C20 0 8 12 8 28C8 36.8366 13.1634 44 20 44C26.8366 44 32 36.8366 32 28C32 12 20 0 20 0Z" fill="#8BC34A"/>
+    <ellipse cx="20" cy="50" rx="3" ry="3" fill="#8BC34A"/>
+  </svg>
+  <div class="flex flex-col gap-1">
+    <span class="text-xs text-gray-600">やりたいことを諦めた大人がカッコイイ</span>
+    <span class="text-2xl font-bold">私のカクゴ</span>
+  </div>
+</div>`,
+    relatedTech: ['fixed-header-green-accent-watashi']
+  },
+  {
+    slug: 'nav-hover-underline-effect-watashi',
+    title: 'ナビゲーションホバーエフェクト - アンダーライン',
+    category: 'インタラクション',
+    description: 'ナビゲーションリンクのホバー時にグリーンのアンダーラインが表示されるアニメーション。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/components/works/watashi-no-kakugo/Header.tsx'
+    ],
+    code: `<Link href="/works/watashi-no-kakugo/about" className="nav-link">
+  私のカクゴとは
+</Link>
+
+<style jsx>{\`
+  .nav-link {
+    position: relative;
+    color: #333333;
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #8BC34A;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #8BC34A;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+\`}</style>`,
+    prompt: `ナビゲーションリンクにホバーエフェクトを実装してください。
+
+## 要件
+
+### 基本スタイル
+1. position: relative（擬似要素の基準点）
+2. 色: #333333（通常時）
+3. text-decoration: none（下線なし）
+4. transition: color 0.3s（色変化をスムーズに）
+
+### ホバー時の色変化
+1. color: #333333 → #8BC34A（グリーン）
+2. transition: 0.3s
+
+### アンダーラインエフェクト（::after疑似要素）
+1. content: ''（空）
+2. position: absolute
+3. 位置:
+   - bottom: -4px（テキストの下4px）
+   - left: 0
+   - right: 0（全幅に配置）
+4. 高さ: 2px
+5. 背景色: #8BC34A（グリーン）
+6. transform: scaleX(0)（初期状態: 非表示）
+7. transition: transform 0.3s（アニメーション）
+
+### ホバー時のアンダーライン
+1. ::after疑似要素のtransform: scaleX(0) → scaleX(1)
+2. 左から右へ伸びるアニメーション
+
+## 実装手順
+
+1. リンク要素を作成
+   - <Link href="...">
+   - className="nav-link"
+
+2. 基本スタイルを設定
+   - position: relative
+   - color: #333333
+   - text-decoration: none
+
+3. 色のトランジションを追加
+   - transition: color 0.3s
+
+4. ホバースタイルを定義
+   - .nav-link:hover
+   - color: #8BC34A
+
+5. ::after疑似要素を作成
+   - content: ''
+   - position: absolute
+   - bottom: -4px、left: 0、right: 0
+
+6. アンダーラインのスタイル
+   - height: 2px
+   - background: #8BC34A
+   - transform: scaleX(0)（初期非表示）
+
+7. アンダーラインのトランジション
+   - transition: transform 0.3s
+
+8. ホバー時のアンダーライン
+   - .nav-link:hover::after
+   - transform: scaleX(1)（全幅に拡大）
+
+9. styled-jsxでスタイル追加
+
+## デザインのポイント
+- テキスト色とアンダーラインのダブルフィードバック
+- scaleX(0)→scaleX(1)で左から右へ伸びるアニメーション
+- グリーン（#8BC34A）でブランドカラーを強調
+- 0.3sのトランジションでスムーズな動き
+- ::after疑似要素で追加のHTMLタグ不要
+- bottom: -4pxでテキストと適度な間隔
+- position relativeとabsoluteで正確な配置`,
+    preview: `<a href="#" class="relative text-gray-800 hover:text-[#8BC34A] transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#8BC34A] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+  私のカクゴとは
+</a>`,
+    relatedTech: ['fixed-header-green-accent-watashi']
+  },
+  {
+    slug: 'favorite-card-horizontal-watashi',
+    title: 'お気に入りカード - 画像左 + テキスト右',
+    category: 'UIコンポーネント',
+    description: 'お気に入りアイテムを表示するカード。左に画像、右にタイトルと説明文。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/profile/page.tsx'
+    ],
+    code: `<div className="favorite-box-inner">
+  <div className="favorite-image-left">
+    <div className="favorite-img"></div>
+  </div>
+  <div className="favorite-text-right">
+    <h4 className="item-title">リカちゃん人形</h4>
+    <p>奈良限定・万葉リカちゃんです。</p>
+  </div>
+  <div className="clear"></div>
+</div>
+
+<style jsx>{\`
+  .favorite-image-left {
+    width: 160px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .favorite-img {
+    width: 160px;
+    height: 120px;
+    background: #ff6b6b;
+    border-radius: 3px;
+  }
+
+  .favorite-text-right {
+    width: 300px;
+    float: right;
+  }
+
+  .item-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8BC34A;
+    margin: 0 0 8px;
+  }
+\`}</style>`,
+    prompt: `お気に入りカードを実装してください。
+
+## 要件
+
+### 基本構造
+1. コンテナ: <div className="favorite-box-inner">
+2. 画像エリア: <div className="favorite-image-left">
+3. テキストエリア: <div className="favorite-text-right">
+4. クリア要素: <div className="clear">（float解除用）
+
+### 画像エリア仕様
+1. className: favorite-image-left
+2. 幅: 160px固定
+3. float: left
+4. マージン右: 10px（テキストとの間隔）
+
+### 画像仕様
+1. className: favorite-img
+2. サイズ: 160px × 120px
+3. 背景色: プレースホルダー色（例: #ff6b6b）
+4. 角丸: 3px
+5. 画像がある場合: background-imageで表示
+
+### テキストエリア仕様
+1. className: favorite-text-right
+2. 幅: 300px固定
+3. float: right
+
+### タイトルスタイル
+1. className: item-title
+2. フォントサイズ: 16px
+3. フォントウェイト: bold
+4. 色: #8BC34A（グリーン）
+5. マージン: 0 0 8px
+
+### 説明文スタイル
+1. <p>タグ
+2. フォントサイズ: 14px
+3. 色: #333333
+4. 行間: 1.6
+5. マージン: 0
+
+## 実装手順
+
+1. コンテナ要素を作成
+   - <div className="favorite-box-inner">
+
+2. 画像エリアを作成
+   - <div className="favorite-image-left">
+   - float: left、幅160px
+
+3. 画像を配置
+   - <div className="favorite-img">
+   - 160px × 120px
+   - 背景色またはbackground-image
+
+4. テキストエリアを作成
+   - <div className="favorite-text-right">
+   - float: right、幅300px
+
+5. タイトルを追加
+   - <h4 className="item-title">
+   - 例: "リカちゃん人形"
+   - グリーン色、太字
+
+6. 説明文を追加
+   - <p>タグ
+   - 例: "奈良限定・万葉リカちゃんです。"
+
+7. クリア要素を追加
+   - <div className="clear">
+   - clear: both
+
+8. styled-jsxでスタイル追加
+   - .favorite-image-left、.favorite-img
+   - .favorite-text-right、.item-title
+
+## デザインのポイント
+- 横並びレイアウトで画像とテキストを効率的に配置
+- 画像160px × 120pxで適度な視覚的インパクト
+- タイトルをグリーン（#8BC34A）でブランドカラーを強調
+- float手法で左右に自然に配置
+- 10pxのマージンで適度な間隔
+- 300pxのテキストエリアで十分な説明スペース
+- 角丸3pxで柔らかい印象`,
+    preview: `<div class="flex gap-3 items-start">
+  <div class="w-40 h-30 bg-red-400 rounded flex-shrink-0"></div>
+  <div class="flex-1 max-w-[300px]">
+    <h4 class="text-base font-bold text-[#8BC34A] mb-2 m-0">リカちゃん人形</h4>
+    <p class="text-sm text-gray-800 m-0 leading-relaxed">奈良限定・万葉リカちゃんです。</p>
+  </div>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'profile-card-circular-image-watashi',
+    title: 'プロフィールカード - 円形画像 + 詳細情報',
+    category: 'UIコンポーネント',
+    description: '人物プロフィールの詳細情報カード。円形画像と名前、生年月日、職業などの情報を表示。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/profile/page.tsx'
+    ],
+    code: `<div className="person-det-wrapper">
+  <div className="person-det-inner">
+    <div className="mask-img-area">
+      <div className="person-image"></div>
+      <span className="mask-img"></span>
+    </div>
+    <div className="mg-ctrl">
+      <div className="ruby">たかいちさなえ</div>
+      <div className="name">
+        <h1 className="name-title">高市早苗</h1>
+        <span>奈良県生まれ</span>
+        <span>A型</span>
+      </div>
+      <div className="auto-break">職業：衆議院議員</div>
+      <div className="auto-break">趣味：スキューバダイビング</div>
+      <div className="auto-break">座右の銘：一日一生涯</div>
+    </div>
+    <p className="person-bio">プロフィール本文...</p>
+  </div>
+</div>
+
+<style jsx>{\`
+  .person-det-wrapper {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+  }
+
+  .mask-img-area {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 20px;
+  }
+
+  .person-image {
+    width: 100%;
+    height: 100%;
+    background: #e91e63;
+    border-radius: 50%;
+  }
+
+  .ruby {
+    font-size: 11px;
+    color: #666666;
+  }
+
+  .name-title {
+    display: inline;
+    font-size: 24px;
+    font-weight: bold;
+  }
+\`}</style>`,
+    prompt: `プロフィールカードを実装してください。
+
+## 要件
+
+### 基本構造
+1. 外側コンテナ: <div className="person-det-wrapper">
+2. 内側コンテナ: <div className="person-det-inner">
+3. 画像エリア: <div className="mask-img-area">
+4. 情報エリア: <div className="mg-ctrl">
+5. プロフィール本文: <p className="person-bio">
+
+### コンテナスタイル
+1. person-det-wrapper:
+   - 背景: #ffffff
+   - ボーダー: 1px solid #e0e0e0
+   - パディング: 20px
+   - 角丸: 4px（推奨）
+
+### 画像エリア仕様
+1. className: mask-img-area
+2. サイズ: 100px × 100px
+3. float: left
+4. マージン右: 20px
+5. 円形画像を内包
+
+### 円形画像スタイル
+1. className: person-image
+2. サイズ: 100% × 100%（親要素に合わせる）
+3. 背景色: プレースホルダー色（例: #e91e63）
+4. border-radius: 50%（完全な円形）
+
+### ふりがなスタイル
+1. className: ruby
+2. フォントサイズ: 11px
+3. 色: #666666
+4. マージン下: 4px
+
+### 名前セクション
+1. className: name
+2. 構造:
+   - <h1 className="name-title">名前</h1>
+   - <span>出身地</span>
+   - <span>血液型</span>
+
+### 名前タイトルスタイル
+1. className: name-title
+2. display: inline
+3. フォントサイズ: 24px
+4. フォントウェイト: bold
+5. 色: #000000
+
+### 詳細情報スタイル
+1. className: auto-break
+2. フォントサイズ: 14px
+3. 色: #333333
+4. マージン: 4px 0
+5. 改行可能: word-wrap: break-word
+
+### プロフィール本文
+1. className: person-bio
+2. マージン上: 16px
+3. フォントサイズ: 14px
+4. 行間: 1.8
+5. clear: both（画像floatの解除）
+
+## 実装手順
+
+1. 外側コンテナを作成
+   - <div className="person-det-wrapper">
+   - 背景、ボーダー、パディング設定
+
+2. 内側コンテナを作成
+   - <div className="person-det-inner">
+
+3. 画像エリアを配置
+   - <div className="mask-img-area">
+   - float: left、100px × 100px
+
+4. 円形画像を追加
+   - <div className="person-image">
+   - border-radius: 50%
+   - 背景色またはbackground-image
+
+5. 情報エリアを作成
+   - <div className="mg-ctrl">
+
+6. ふりがなを追加
+   - <div className="ruby">たかいちさなえ</div>
+
+7. 名前セクションを追加
+   - <div className="name">
+   - <h1>タグで名前
+   - <span>で出身地、血液型
+
+8. 詳細情報を追加
+   - <div className="auto-break">職業：...</div>
+   - <div className="auto-break">趣味：...</div>
+   - <div className="auto-break">座右の銘：...</div>
+
+9. プロフィール本文を追加
+   - <p className="person-bio">
+   - clear: both
+
+10. styled-jsxでスタイル追加
+    - 各クラスのスタイル定義
+
+## デザインのポイント
+- 円形画像（100px）で人物の顔を強調
+- float配置で画像と情報を効率的にレイアウト
+- ふりがな（11px）で読み方を明示
+- 名前タイトル（24px、bold）で視覚的ヒエラルキー
+- 詳細情報で職業、趣味、座右の銘を整理
+- white背景とグレーボーダーで清潔な印象
+- プロフィール本文で詳細な自己紹介を提供`,
+    preview: `<div class="bg-white border border-gray-200 p-5 rounded">
+  <div class="flex gap-5">
+    <div class="w-25 h-25 rounded-full bg-pink-600 flex-shrink-0"></div>
+    <div class="flex-1">
+      <p class="text-xs text-gray-600 mb-1">たかいちさなえ</p>
+      <div class="mb-2">
+        <h1 class="inline text-2xl font-bold mr-3">高市早苗</h1>
+        <span class="text-sm text-gray-700">奈良県生まれ</span>
+        <span class="text-sm text-gray-700 ml-2">A型</span>
+      </div>
+      <div class="text-sm text-gray-800 space-y-1">
+        <div>職業：衆議院議員</div>
+        <div>趣味：スキューバダイビング</div>
+        <div>座右の銘：一日一生涯</div>
+      </div>
+    </div>
+  </div>
+  <p class="text-sm text-gray-800 mt-4 leading-relaxed">プロフィール本文がここに表示されます。</p>
+</div>`,
+    relatedTech: []
+  },
+  {
+    slug: 'two-column-person-grid-watashi',
+    title: '2カラムグリッド - 人物カード配置',
+    category: 'レイアウト・構造',
+    description: '人物カードを2カラムで配置するグリッドレイアウト。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/persons/page.tsx'
+    ],
+    code: `<div className="persons-grid">
+  {persons.map((person, index) => (
+    <Link key={index} href="/profile" className="person-card">
+      {/* カード内容 */}
+    </Link>
+  ))}
+</div>
+
+<style jsx>{\`
+  .persons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1024px) {
+    .persons-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+\`}</style>`,
+    prompt: `2カラムグリッドを実装してください。
+
+## 要件
+
+### 基本構造
+1. コンテナ要素: <div className="persons-grid">
+2. 子要素: 人物カード（Linkコンポーネント）
+3. レイアウト: CSS Grid
+
+### グリッドレイアウト仕様
+1. display: grid
+2. grid-template-columns: repeat(2, 1fr)
+   - 2カラム
+   - 各カラムは均等幅（1fr）
+3. gap: 24px（行・列の間隔）
+
+### 子要素
+1. map関数で繰り返し生成
+2. 各要素: <Link>コンポーネント
+3. className: person-card（人物カード）
+4. href: プロフィールページへのリンク
+
+### レスポンシブ対応
+1. ブレークポイント: 1024px以下
+2. 変更内容:
+   - grid-template-columns: 1fr（1カラムに変更）
+   - カードが縦に並ぶ
+   - gap: 24px（そのまま維持）
+
+## 実装手順
+
+1. グリッドコンテナを作成
+   - <div className="persons-grid">
+   - display: grid
+
+2. グリッドカラムを定義
+   - grid-template-columns: repeat(2, 1fr)
+   - 2つの均等幅カラム
+
+3. ギャップを設定
+   - gap: 24px
+   - 行・列の両方に適用
+
+4. データ配列を用意
+   - persons配列
+   - 各項目: id、job、name、message等
+
+5. map関数で繰り返し
+   - persons.map((person, index) => ...)
+
+6. 各カードを生成
+   - <Link key={index}>
+   - className="person-card"
+   - 人物カードコンポーネントの内容
+
+7. styled-jsxでスタイル追加
+   - .persons-grid: グリッド設定
+
+8. レスポンシブメディアクエリを追加
+   - @media (max-width: 1024px)
+   - grid-template-columns: 1fr
+
+## デザインのポイント
+- 2カラムグリッドで効率的な空間活用
+- 均等幅（1fr）で左右対称の美しさ
+- 24pxのギャップで適度な余白と視認性
+- Grid Layoutで簡潔で保守しやすいコード
+- レスポンシブ対応で小画面でも読みやすさを維持
+- map関数との組み合わせでDRY（Don't Repeat Yourself）
+- 1024px以下で1カラムに切り替えて縦スクロール`,
+    preview: `<div class="grid grid-cols-2 gap-6">
+  <div class="bg-white border border-gray-200 rounded p-5">
+    <p class="text-sm text-gray-700">人物カード 1</p>
+  </div>
+  <div class="bg-white border border-gray-200 rounded p-5">
+    <p class="text-sm text-gray-700">人物カード 2</p>
+  </div>
+  <div class="bg-white border border-gray-200 rounded p-5">
+    <p class="text-sm text-gray-700">人物カード 3</p>
+  </div>
+  <div class="bg-white border border-gray-200 rounded p-5">
+    <p class="text-sm text-gray-700">人物カード 4</p>
+  </div>
+</div>`,
+    relatedTech: ['person-card-circular-image-watashi']
+  },
+  {
+    slug: 'styled-jsx-integration-watashi',
+    title: 'styled-jsx統合 - Next.js 16対応',
+    category: '技術スタック',
+    description: 'Next.js 16でstyled-jsxを使用したCSS-in-JS実装。Client Componentで\'use client\'必須。',
+    project: 'watashi-no-kakugo',
+    usedIn: [
+      '/src/app/works/watashi-no-kakugo/page.tsx',
+      '/src/components/works/watashi-no-kakugo/Header.tsx',
+      '/src/components/works/watashi-no-kakugo/Footer.tsx'
+    ],
+    setup: `1. package.jsonでstyled-jsxを確認:
+{
+  "dependencies": {
+    "styled-jsx": "^5.1.6"
+  }
+}
+
+2. Client Componentで使用:
+'use client'
+
+export default function Component() {
+  return (
+    <>
+      <div className="container">...</div>
+      <style jsx>{\\\`
+        .container {
+          padding: 20px;
+        }
+      \\\`}</style>
+    </>
+  )
+}`,
+    code: `'use client'
+
+export default function WatashiNoKakugoPage() {
+  return (
+    <>
+      <main className="main">
+        <section className="hero">
+          {/* コンテンツ */}
+        </section>
+      </main>
+
+      <style jsx>{\`
+        .main {
+          padding-top: 80px;
+          min-height: 100vh;
+        }
+
+        .hero {
+          background: #eeeeee;
+          padding: 60px 0 50px;
+        }
+      \`}</style>
+    </>
+  )
+}`,
+    prompt: `styled-jsxを使ってコンポーネントにスタイルを追加してください。
+
+## 要件
+
+### 基本要件
+1. Next.js 16環境
+2. styled-jsx: ^5.1.6（package.jsonに記載）
+3. Client Component: 'use client'ディレクティブ必須
+4. スコープ付きCSS: コンポーネント内のみ有効
+
+### スタイルタグ構文
+1. タグ: <style jsx>{\\\`...\\\`}</style>
+2. テンプレートリテラル: バッククォート使用
+3. 配置: JSXのreturn内、要素と同階層
+4. スコープ: デフォルトでローカルスコープ
+
+### スコープの種類
+1. ローカルスコープ（デフォルト）:
+   - <style jsx>{\\\`...\\\`}</style>
+   - 同じコンポーネント内のみ有効
+   - クラス名の衝突を防止
+
+2. グローバルスコープ:
+   - <style jsx global>{\\\`...\\\`}</style>
+   - アプリケーション全体に適用
+   - リセットCSSや共通スタイルに使用
+
+### Tailwind CSSとの併用
+1. 可能: styled-jsxとTailwindは共存可能
+2. 使い分け:
+   - Tailwind: ユーティリティクラスで簡潔に
+   - styled-jsx: 複雑なスタイル、擬似要素、メディアクエリ
+
+### 動的スタイル
+1. インラインstyle属性を使用:
+   - style={{ background: color }}
+2. テンプレートリテラル内で変数を展開:
+   - 制限あり、完全な動的スタイルにはインライン推奨
+
+## 実装手順
+
+1. 'use client'ディレクティブを追加
+   - ファイル冒頭（importより前）
+   - Client Componentであることを宣言
+
+2. コンポーネントを定義
+   - export default function MyComponent()
+
+3. JSXを記述
+   - return文内にHTML構造
+   - classNameでクラス名を指定
+
+4. <style jsx>タグを追加
+   - return内、JSX要素と同階層
+   - <></>(Fragment)でラップ推奨
+
+5. CSSを記述
+   - テンプレートリテラル内
+   - 通常のCSSセレクタとプロパティ
+
+6. スコープを確認
+   - ローカルスコープで同じコンポーネント内のみ有効
+   - 他のコンポーネントに影響しない
+
+7. ビルドとテスト
+   - npm run dev
+   - スタイルが正しく適用されることを確認
+
+## デザインのポイント
+- コンポーネントスコープでスタイルの衝突を防止
+- CSS-in-JSで保守性向上（JSXとCSSが同じファイル）
+- 動的スタイルはインラインstyle属性を使用
+- グローバルスタイルは最小限に（共通スタイルのみ）
+- Tailwindと併用して効率化
+
+## 注意点
+- Server Componentでは使用不可（'use client'必須）
+- ビルド時にスタイルが最適化される
+- クラス名は自動的にユニークな名前に変換される
+- 擬似要素（::before、::after）、メディアクエリも使用可能`,
+    preview: `<div class="bg-gray-50 p-6 rounded border border-gray-200">
+  <h3 class="text-base font-bold mb-3">styled-jsx コード例</h3>
+  <pre class="bg-gray-900 text-gray-100 p-4 rounded text-xs overflow-x-auto"><code>'use client'
+
+export default function MyComponent() {
+  return (
+    &lt;&gt;
+      &lt;div className="container"&gt;
+        &lt;h1 className="title"&gt;タイトル&lt;/h1&gt;
+      &lt;/div&gt;
+
+      &lt;style jsx&gt;{\\\`
+        .container {
+          padding: 20px;
+          background: #ffffff;
+        }
+
+        .title {
+          font-size: 24px;
+          font-weight: bold;
+          color: #8BC34A;
+        }
+      \\\`}&lt;/style&gt;
+    &lt;/&gt;
+  )
+}</code></pre>
+</div>`,
+    relatedTech: []
+  }
+];
+
+// ai-brain-logsの知識を統合
+export const technologies: Technology[] = [
+  ...existingTechnologies,
+  ...aiBrainLogsTechnologies
+];

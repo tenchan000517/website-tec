@@ -2,6 +2,21 @@ import { technologies } from '@/data/technologies'
 import { notFound } from 'next/navigation'
 import CopyButton from '@/components/CopyButton'
 import Link from 'next/link'
+import MarkdownContent from '@/components/MarkdownContent'
+
+// ai-brain-logs のカテゴリーを判定
+const aiBrainLogsCategories = [
+  'Skills（スキル・手法）',
+  'Decisions（技術選定・判断）',
+  'Workflows（ワークフロー）',
+  'Design Patterns（設計パターン）',
+  'Failures（失敗・トラブル対処）',
+  'Active Systems（稼働中システム）'
+];
+
+function isAiBrainLogsContent(category: string): boolean {
+  return aiBrainLogsCategories.includes(category);
+}
 
 export default async function TechDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -11,6 +26,8 @@ export default async function TechDetailPage({ params }: { params: Promise<{ slu
     notFound()
   }
 
+  const isAiBrainLogs = isAiBrainLogsContent(tech.category);
+
   return (
     <div className="min-h-screen bg-white">
       {/* ヘッダー */}
@@ -19,9 +36,14 @@ export default async function TechDetailPage({ params }: { params: Promise<{ slu
           <Link href="/tech" className="text-blue-100 hover:text-white mb-4 inline-block">
             ← 技術一覧に戻る
           </Link>
-          <span className="text-xs bg-blue-400 px-3 py-1 rounded-full block mt-4 inline-block">
-            {tech.category}
-          </span>
+          <div className="flex flex-wrap gap-2 mt-4">
+            <span className="text-xs bg-blue-400 px-3 py-1 rounded-full">
+              {tech.category}
+            </span>
+            <span className="text-xs bg-green-500 px-3 py-1 rounded-full">
+              {tech.project}
+            </span>
+          </div>
           <h1 className="text-4xl font-bold mt-4">{tech.title}</h1>
           <p className="text-blue-100 mt-4">{tech.description}</p>
         </div>
@@ -29,18 +51,20 @@ export default async function TechDetailPage({ params }: { params: Promise<{ slu
 
       <main className="max-w-4xl mx-auto px-4 py-12">
         {/* 使用場所 */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">使用場所</h2>
-          <ul className="list-disc list-inside space-y-2">
-            {tech.usedIn.map(path => (
-              <li key={path} className="text-gray-700">
-                <code className="bg-gray-100 px-2 py-1 rounded text-sm">
-                  {path}
-                </code>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {tech.usedIn.length > 0 && (
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-4">使用場所</h2>
+            <ul className="list-disc list-inside space-y-2">
+              {tech.usedIn.map(path => (
+                <li key={path} className="text-gray-700">
+                  <code className="bg-gray-100 px-2 py-1 rounded text-sm">
+                    {path}
+                  </code>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* プレビュー */}
         {tech.preview && (
@@ -52,20 +76,30 @@ export default async function TechDetailPage({ params }: { params: Promise<{ slu
           </section>
         )}
 
-        {/* 実装コード */}
+        {/* 実装コード / Markdownコンテンツ */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">実装コード</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            {isAiBrainLogs ? '知識の詳細' : '実装コード'}
+          </h2>
           <div className="relative">
             <CopyButton text={tech.code} />
-            <pre className="bg-[#1E293B] text-[#E2E8F0] p-6 rounded-lg overflow-x-auto">
-              <code>{tech.code}</code>
-            </pre>
+            {isAiBrainLogs ? (
+              <div className="bg-gray-50 border border-gray-200 p-6 rounded-lg prose prose-sm max-w-none">
+                <MarkdownContent content={tech.code} />
+              </div>
+            ) : (
+              <pre className="bg-[#1E293B] text-[#E2E8F0] p-6 rounded-lg overflow-x-auto">
+                <code>{tech.code}</code>
+              </pre>
+            )}
           </div>
         </section>
 
         {/* Claude Codeへの指示文 */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Claude Codeへの指示文</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            {isAiBrainLogs ? '再現方法' : 'Claude Codeへの指示文'}
+          </h2>
           <p className="text-gray-600 mb-4">
             以下の指示文をClaude Codeにコピペして使用してください：
           </p>
