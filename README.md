@@ -69,12 +69,29 @@ Claude Codeが検索・参照
 
 ## 📚 ドキュメント
 
+### 🔧 現在のタスク関連
 | ドキュメント | 説明 |
 |---|---|
 | **🚨 [HANDOVER-CRITICAL.md](./HANDOVER-CRITICAL.md)** | **必読** - 現在の問題点と80%の残作業 |
 | **[PROGRESS.md](./PROGRESS.md)** | 現在の進捗（20%）、次にやるべきこと |
 | **[QUICK-START.md](./QUICK-START.md)** | システムの使い方、作品の追加方法 |
 | **[WORKS-DEFINITION.md](./WORKS-DEFINITION.md)** | 「作品」の完全な定義リスト |
+
+### 🚀 新規プロジェクト用セットアップガイド
+| ドキュメント | 説明 | 対象 |
+|---|---|---|
+| **[QUICK-SETUP-COMMAND.md](./QUICK-SETUP-COMMAND.md)** | 1分で始める簡易版セットアップ指示 | すぐに実装したい |
+| **[SETUP-COMMAND-TEMPLATE.md](./SETUP-COMMAND-TEMPLATE.md)** | 完全版セットアップガイド（チェックリスト・検証付き） | 詳細に実装したい |
+| **[INDUSTRY-SPECIFIC-SETUP.md](./INDUSTRY-SPECIFIC-SETUP.md)** | 業種別（製造業・教育・リクルート・店舗・LP）カスタマイズ版 | 業種特化したい |
+
+**新規WEBサイトのSEO・LLMO・UI基本セットアップをする際は上記ドキュメント参照**
+
+### 🎨 デザインガイド
+| ドキュメント | 説明 |
+|---|---|
+| **[DESIGN-GUIDE.md](./DESIGN-GUIDE.md)** | 「わたしの覚悟」サイトから抽出したデザイン・配色・レイアウトのベースライン |
+
+**カラー・タイポグラフィ・UIコンポーネントの標準を定義。シンプルで機能的なデザインを実現。**
 
 ### 🚀 使い方
 

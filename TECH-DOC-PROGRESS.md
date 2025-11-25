@@ -726,3 +726,118 @@
 ---
 
 **重要**: 技術を1つ追加するたびに、このファイルを更新すること。
+
+
+### watashi-no-kakugo（私のカクゴ）プロジェクト - 23技術追加
+
+**追加日**: 2025-11-04
+
+61. **3カラムレイアウト - 固定幅カラム（370px + 270px + 300px）** (レイアウト・構造)
+    - slug: `three-column-layout-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - 異なる幅の3つのカラムを横並びに配置
+    - プレビュー付き
+
+62. **カスタムスクロールエリア - 290px固定高さ** (UIコンポーネント)
+    - slug: `custom-scroll-area-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - Webkitスクロールバーのカスタムスタイル
+    - プレビュー付き
+
+63. **グリーンアクセントボタン - ブランドカラー活用** (UIコンポーネント)
+    - slug: `green-accent-button-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - ホバー時にグレーから緑へ変化
+    - プレビュー付き
+
+64. **人物カード - 円形画像 + 肩書 + 名前 + メッセージ** (UIコンポーネント)
+    - slug: `person-card-circular-image-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - プレビュー付き
+
+65. **ブログカード - 5カラムグリッド** (UIコンポーネント)
+    - slug: `blog-card-five-column-grid-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - レスポンシブ対応（5→3→2→1カラム）
+    - プレビュー付き
+
+66. **固定ヘッダー - グリーンアクセント + ロゴ + ナビ** (レイアウト・構造)
+    - slug: `fixed-header-green-accent-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+67. **ヒーローセクション - 7人の人物シルエット** (UIコンポーネント)
+    - slug: `hero-section-person-silhouettes-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+68. **サイドバー検索フォーム - テキスト + セレクトボックス** (フォーム)
+    - slug: `sidebar-search-form-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+69. **タブ切り替え機能 - 来歴セクション** (インタラクション)
+    - slug: `tab-switching-history-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - useStateで管理
+
+70. **2カラムレイアウト - サイドバー（280px）+ メイン** (レイアウト・構造)
+    - slug: `two-column-layout-sidebar-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+71. **セクションタイトル - グリーンアンダーライン** (UIコンポーネント)
+    - slug: `section-title-green-underline-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - プレビュー付き
+
+72. **動画プレースホルダー - 再生ボタン + 時間表示** (UIコンポーネント)
+    - slug: `video-placeholder-play-button-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - プレビュー付き
+
+73. **お知らせバナー - 全幅テキスト通知** (UIコンポーネント)
+    - slug: `notice-banner-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - プレビュー付き
+
+74. **ヘッダー検索フォーム - グレーボタン** (フォーム)
+    - slug: `header-search-form-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+75. **フッターナビゲーション - 横並びリンク** (UIコンポーネント)
+    - slug: `footer-navigation-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+76. **更新情報カード - 円形画像 + 日付 + 名前** (UIコンポーネント)
+    - slug: `update-card-circular-image-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - プレビュー付き
+
+77. **フロート2カラムレイアウト - 左右480px** (レイアウト・構造)
+    - slug: `float-two-column-layout-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+78. **ブランドロゴ - SVGアイコン + テキスト** (UIコンポーネント)
+    - slug: `brand-logo-svg-icon-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - プレビュー付き
+
+79. **ナビゲーションホバーエフェクト - アンダーライン** (インタラクション)
+    - slug: `nav-hover-underline-effect-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - プレビュー付き
+
+80. **お気に入りカード - 画像左 + テキスト右** (UIコンポーネント)
+    - slug: `favorite-card-horizontal-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+81. **プロフィールカード - 円形画像 + 詳細情報** (UIコンポーネント)
+    - slug: `profile-card-circular-image-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+82. **2カラムグリッド - 人物カード配置** (レイアウト・構造)
+    - slug: `two-column-person-grid-watashi`
+    - プロジェクト: watashi-no-kakugo
+
+83. **styled-jsx統合 - Next.js 16対応** (技術スタック)
+    - slug: `styled-jsx-integration-watashi`
+    - プロジェクト: watashi-no-kakugo
+    - セットアップ手順付き
+

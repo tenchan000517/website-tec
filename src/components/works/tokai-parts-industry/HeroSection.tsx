@@ -39,19 +39,19 @@ import Image from 'next/image'
 const slides = [
   {
     image: '/works/tokai-parts-industry/images/TOP/1.jpg',
-    title: '夢ある未来へ。\n変革と挑戦',
+    title: '産業自動化の未来を創る\n技術とノウハウ',
     subtitle:
-      '未来に向かって、\n社会全体の高い目標を掲げて\n進化する企業を目指し続けます。',
+      '昭和41年創業以来、\n電磁ブレーキ・空箱供給装置・専用機の設計製造で\n産業界の発展に貢献し続けます。',
   },
   {
     image: '/works/tokai-parts-industry/images/TOP/2.jpg',
-    title: 'モビリティー社会の未来に\nものづくりで貢献',
-    subtitle: '高い技術力で、次世代の自動車部品を製造しています。',
+    title: '空箱供給装置で\n生産ラインの無人化を実現',
+    subtitle: 'オリジナル製品「空箱供給機」で長時間の無人稼働を可能にします。',
   },
   {
     image: '/works/tokai-parts-industry/images/TOP/3.jpg',
-    title: 'SUV・ミニバンを中心に\nクルマを支える骨格を生産',
-    subtitle: '最先端の設備で、高品質な製品をお届けします。',
+    title: '特殊電磁ブレーキから\n各種専用機まで',
+    subtitle: '豊富な製品ラインナップで、あらゆる産業のニーズに応えます。',
   },
 ]
 

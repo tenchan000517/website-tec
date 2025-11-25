@@ -7,8 +7,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Card } from '@/design-system/components/primitives'
+import ExternalWebsites from '@/components/ExternalWebsites'
 
-const works = [
+// 内部作品（このリポジトリ内に実装があるもの）
+const internalWorks = [
   {
     id: 'tokai-parts-industry',
     title: 'サンプル作品 - 製造業コーポレートサイト',
@@ -18,8 +20,21 @@ const works = [
     tags: ['製造業', 'コーポレートサイト', '採用特化', 'Next.js', 'Tailwind CSS'],
     path: '/works/tokai-parts-industry',
   },
-  // 今後追加される作品
+  {
+    id: 'watashi-no-kakugo',
+    title: '私のカクゴ - メディアサイト',
+    category: 'メディアサイト コンテンツサイト',
+    description: 'カッコイイ大人の覚悟を紹介するメディアサイト。人物紹介、ブログ・SNS統合。',
+    image: '/works/watashi-no-kakugo/images/top/1.png',
+    tags: ['メディアサイト', '人物紹介', 'グリーンアクセント', 'Next.js', 'styled-jsx'],
+    path: '/works/watashi-no-kakugo',
+  },
 ]
+
+// 外部サイト数（ExternalWebsitesと同期）
+const externalWebsitesCount = 7
+
+const totalWorks = internalWorks.length + externalWebsitesCount
 
 export default function Home() {
   return (
@@ -42,7 +57,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Card className="p-6 text-center">
             <div className="text-4xl font-bold text-blue-600 mb-2">
-              {works.length}
+              {totalWorks}
             </div>
             <div className="text-sm text-gray-600">作品数</div>
           </Card>
@@ -60,11 +75,11 @@ export default function Home() {
           </Card>
         </div>
 
-        {/* 作品一覧 */}
+        {/* 内部作品一覧 */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">作品一覧</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">作品一覧（テンプレート）</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {works.map((work) => (
+            {internalWorks.map((work) => (
               <Link key={work.id} href={work.path}>
                 <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer h-full">
                   {/* 画像 */}
@@ -112,8 +127,30 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 外部Webサイト一覧 */}
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">公開中のWebサイト</h2>
+          <ExternalWebsites />
+        </section>
+
+        {/* プロジェクト一覧セクション */}
+        <section className="mt-20 py-20 bg-gradient-to-b from-purple-50 to-white rounded-2xl">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">全プロジェクト一覧</h2>
+            <p className="text-gray-600 mb-8">
+              Webサイト以外も含む、全てのプロジェクト（アプリ、ツール、ゲームなど）を見る
+            </p>
+            <Link
+              href="/projects"
+              className="inline-block bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all"
+            >
+              全プロジェクトを見る →
+            </Link>
+          </div>
+        </section>
+
         {/* 技術ドキュメントセクション */}
-        <section className="mt-20 py-20 bg-gradient-to-b from-blue-50 to-white rounded-2xl">
+        <section className="mt-12 py-20 bg-gradient-to-b from-blue-50 to-white rounded-2xl">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">技術ドキュメント</h2>
             <p className="text-gray-600 mb-8">

@@ -49,15 +49,15 @@ export default function CompanySection() {
                 <h2 className="text-2xl font-bold text-gray-900">会社情報</h2>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed">
-                モビリティー社会の未来に
+                産業機械の自動化を支える
                 <br />
-                ものづくりで貢献
+                技術とノウハウ
               </p>
               <p className="text-gray-600">
-                東海部品工業は、トヨタ車体グループの一員として、
-                自動車部品の製造を通じて社会に貢献しています。
+                フジタ電業は、昭和41年創業以来、電磁ブレーキ・空箱供給装置・専用機の設計製造を通じて、
+                産業界の自動化・効率化に貢献しています。
               </p>
-              <Link href="/about">
+              <Link href="/works/fujita-dengyo/about">
                 <Button variant="primary" size="md">
                   詳しくはこちら
                   <svg

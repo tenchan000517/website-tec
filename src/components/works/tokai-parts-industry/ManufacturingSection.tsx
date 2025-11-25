@@ -28,7 +28,7 @@ export default function ManufacturingSection() {
           <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden">
             <Image
               src="/works/tokai-parts-industry/images/TOP/4.jpg"
-              alt="TBKのクルマづくり"
+              alt="フジタ電業の製造技術"
               fill
               className="object-cover"
             />
@@ -39,18 +39,18 @@ export default function ManufacturingSection() {
             <div className="space-y-6">
               <div>
                 <p className="text-5xl font-bold text-[#1E40AF] mb-2">MANUFACTURING</p>
-                <h2 className="text-2xl font-bold text-gray-900">TBKのクルマづくり</h2>
+                <h2 className="text-2xl font-bold text-gray-900">フジタ電業の製造技術</h2>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed">
-                高い技術力と設備が作り出す
+                設計から製造まで
                 <br />
-                安心・安全と高品質の製品
+                一貫体制で高品質を実現
               </p>
               <p className="text-gray-600">
-                最先端の製造ラインとロボット技術により、
-                高精度な自動車部品を生産しています。
+                充実した工作機械と協力工場ネットワークにより、
+                お客様のニーズに合わせた専用機・装置を設計製作しています。
               </p>
-              <Link href="/manufacturing">
+              <Link href="/works/fujita-dengyo/manufacturing">
                 <Button variant="primary" size="md">
                   詳しくはこちら
                   <svg

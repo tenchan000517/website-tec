@@ -50,10 +50,10 @@ export default function Header() {
         isScrolled ? 'shadow-md' : ''
       }`}
     >
-      {/* 親会社バッジ */}
+      {/* 企業認証バッジ */}
       <div className="bg-[#2563EB] py-2">
         <div className="container mx-auto px-6">
-          <span className="text-xs text-white font-medium">トヨタ車体グループ</span>
+          <span className="text-xs text-white font-medium">ISO 9001認証取得 | 電気工事業・管工事業 知事許可</span>
         </div>
       </div>
 
@@ -62,17 +62,17 @@ export default function Header() {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* ロゴ */}
-            <Link href="/works/tokai-parts-industry" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-[#2563EB]">TBK</span>
+            <Link href="/works/fujita-dengyo" className="flex items-center space-x-2">
+              <span className="text-2xl font-bold text-[#2563EB]">FUJITA</span>
               <span className="text-sm font-medium text-gray-700">
-                東海部品工業株式会社
+                フジタ電業株式会社
               </span>
             </Link>
 
             {/* デスクトップメニュー */}
             <nav className="hidden lg:flex items-center space-x-8">
               <Link
-                href="/works/tokai-parts-industry/about"
+                href="/works/fujita-dengyo/about"
                 className="text-sm font-medium text-gray-700 hover:text-[#2563EB] transition-colors"
               >
                 会社情報
@@ -80,7 +80,7 @@ export default function Header() {
                 <span className="text-xs text-gray-500">COMPANY</span>
               </Link>
               <Link
-                href="/works/tokai-parts-industry/product"
+                href="/works/fujita-dengyo/product"
                 className="text-sm font-medium text-gray-700 hover:text-[#2563EB] transition-colors"
               >
                 製品紹介
@@ -88,15 +88,15 @@ export default function Header() {
                 <span className="text-xs text-gray-500">PRODUCT</span>
               </Link>
               <Link
-                href="/works/tokai-parts-industry/manufacturing"
+                href="/works/fujita-dengyo/manufacturing"
                 className="text-sm font-medium text-gray-700 hover:text-[#2563EB] transition-colors"
               >
-                TBKのクルマづくり
+                製造技術
                 <br />
                 <span className="text-xs text-gray-500">MANUFACTURING</span>
               </Link>
               <Link
-                href="/works/tokai-parts-industry/sustainability"
+                href="/works/fujita-dengyo/sustainability"
                 className="text-sm font-medium text-gray-700 hover:text-[#2563EB] transition-colors"
               >
                 サステナビリティ
@@ -104,7 +104,7 @@ export default function Header() {
                 <span className="text-xs text-gray-500">SUSTAINABILITY</span>
               </Link>
               <Link
-                href="/works/tokai-parts-industry/news"
+                href="/works/fujita-dengyo/news"
                 className="text-sm font-medium text-gray-700 hover:text-[#2563EB] transition-colors"
               >
                 お知らせ
@@ -112,7 +112,7 @@ export default function Header() {
                 <span className="text-xs text-gray-500">NEWS</span>
               </Link>
               <Link
-                href="/works/tokai-parts-industry/contact"
+                href="/works/fujita-dengyo/contact"
                 className="text-sm font-medium text-gray-700 hover:text-[#2563EB] transition-colors"
               >
                 お問い合わせ
@@ -123,7 +123,7 @@ export default function Header() {
 
             {/* CTAボタン */}
             <div className="hidden lg:block">
-              <Link href="/works/tokai-parts-industry/recruit">
+              <Link href="/works/fujita-dengyo/recruit">
                 <Button variant="accent" size="md">採用情報</Button>
               </Link>
             </div>
@@ -161,48 +161,48 @@ export default function Header() {
         <div className="lg:hidden border-t border-gray-100 bg-white">
           <nav className="container mx-auto px-6 py-4 flex flex-col space-y-4">
             <Link
-              href="/works/tokai-parts-industry/about"
+              href="/works/fujita-dengyo/about"
               className="text-sm font-medium text-gray-700 hover:text-[#2563EB] py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               会社情報（COMPANY）
             </Link>
             <Link
-              href="/works/tokai-parts-industry/product"
+              href="/works/fujita-dengyo/product"
               className="text-sm font-medium text-gray-700 hover:text-[#2563EB] py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               製品紹介（PRODUCT）
             </Link>
             <Link
-              href="/works/tokai-parts-industry/manufacturing"
+              href="/works/fujita-dengyo/manufacturing"
               className="text-sm font-medium text-gray-700 hover:text-[#2563EB] py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              TBKのクルマづくり（MANUFACTURING）
+              製造技術（MANUFACTURING）
             </Link>
             <Link
-              href="/works/tokai-parts-industry/sustainability"
+              href="/works/fujita-dengyo/sustainability"
               className="text-sm font-medium text-gray-700 hover:text-[#2563EB] py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               サステナビリティ（SUSTAINABILITY）
             </Link>
             <Link
-              href="/works/tokai-parts-industry/news"
+              href="/works/fujita-dengyo/news"
               className="text-sm font-medium text-gray-700 hover:text-[#2563EB] py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               お知らせ（NEWS）
             </Link>
             <Link
-              href="/works/tokai-parts-industry/contact"
+              href="/works/fujita-dengyo/contact"
               className="text-sm font-medium text-gray-700 hover:text-[#2563EB] py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               お問い合わせ（CONTACT）
             </Link>
-            <Link href="/works/tokai-parts-industry/recruit">
+            <Link href="/works/fujita-dengyo/recruit">
               <Button variant="accent" size="md" className="mt-4 w-full">採用情報</Button>
             </Link>
           </nav>

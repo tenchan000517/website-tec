@@ -13,7 +13,7 @@
  */
 
 // カラーシステム
-export {
+import {
   colors,
   colorSystemDocs,
   tailwindColors,
@@ -22,7 +22,7 @@ export {
 } from './colors';
 
 // タイポグラフィシステム
-export {
+import {
   typography,
   typographyPresets,
   typographySystemDocs,
@@ -32,7 +32,7 @@ export {
 } from './typography';
 
 // スペーシングシステム
-export {
+import {
   spacing,
   spacingPatterns,
   spacingUtils,
@@ -42,6 +42,35 @@ export {
   type SpacingPatterns,
   type SpacingSystemDocs,
 } from './spacing';
+
+// Re-export everything
+export {
+  colors,
+  colorSystemDocs,
+  tailwindColors,
+  type ColorSystem,
+  type ColorSystemDocs,
+};
+
+export {
+  typography,
+  typographyPresets,
+  typographySystemDocs,
+  type TypographySystem,
+  type TypographyPresets,
+  type TypographySystemDocs,
+};
+
+export {
+  spacing,
+  spacingPatterns,
+  spacingUtils,
+  spacingSystemDocs,
+  responsiveSpacing,
+  type SpacingSystem,
+  type SpacingPatterns,
+  type SpacingSystemDocs,
+};
 
 /**
  * デザインシステムの完全なドキュメント

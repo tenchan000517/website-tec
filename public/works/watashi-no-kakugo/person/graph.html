@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一日のスケジュール</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+      background: #ffffff;
+      padding: 20px;
+    }
+
+    .schedule-container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .schedule-title {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    .chart-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .chart-svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .schedule-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .schedule-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .schedule-time {
+      color: #666666;
+      flex-shrink: 0;
+      width: 110px;
+    }
+
+    .schedule-label {
+      color: #333333;
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="schedule-container">
+    <h2 class="schedule-title">一日のスケジュール</h2>
+
+    <div class="chart-wrapper">
+      <svg id="chartSvg" class="chart-svg" width="280" height="280" viewBox="0 0 280 280">
+        <!-- Chart will be drawn here by JavaScript -->
+      </svg>
+    </div>
+
+    <div class="schedule-list">
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #2E7D32;"></span>
+        <span class="schedule-time">06:00～07:00</span>
+        <span class="schedule-label">起床、支度、朝食</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #F06292;"></span>
+        <span class="schedule-time">07:00～07:45</span>
+        <span class="schedule-label">新聞、メールチェック</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #FFA726;"></span>
+        <span class="schedule-time">07:45～08:00</span>
+        <span class="schedule-label">出勤</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #FFD54F;"></span>
+        <span class="schedule-time">08:00～08:50</span>
+        <span class="schedule-label">自民党政調会会議</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #AED581;"></span>
+        <span class="schedule-time">08:50～12:00</span>
+        <span class="schedule-label">衆議院経済連営委員会</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #4DB6AC;"></span>
+        <span class="schedule-time">12:00～12:45</span>
+        <span class="schedule-label">昼食弁</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #81C784;"></span>
+        <span class="schedule-time">12:45～12:55</span>
+        <span class="schedule-label">自民党代議士会</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #64B5F6;"></span>
+        <span class="schedule-time">12:55～15:00</span>
+        <span class="schedule-label">衆議院本会議</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #90CAF9;"></span>
+        <span class="schedule-time">15:00～17:00</span>
+        <span class="schedule-label">議員立法審議会議</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #42A5F5;"></span>
+        <span class="schedule-time">17:00～18:15</span>
+        <span class="schedule-label">書類決済、来客対応</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #1976D2;"></span>
+        <span class="schedule-time">18:15～19:40</span>
+        <span class="schedule-label">懇談場所行事動作</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #7E57C2;"></span>
+        <span class="schedule-time">19:40～20:00</span>
+        <span class="schedule-label">退勤</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #AB47BC;"></span>
+        <span class="schedule-time">20:00～01:00</span>
+        <span class="schedule-label">入浴、食事、原稿執筆</span>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-dot" style="background: #BA68C8;"></span>
+        <span class="schedule-time">01:00～06:00</span>
+        <span class="schedule-label">就寝</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Schedule data with time ranges
+    const scheduleData = [
+      { start: 6.0, end: 7.0, color: '#2E7D32', label: '起床、支度、朝食' },
+      { start: 7.0, end: 7.75, color: '#F06292', label: '新聞、メールチェック' },
+      { start: 7.75, end: 8.0, color: '#FFA726', label: '出勤' },
+      { start: 8.0, end: 8.833, color: '#FFD54F', label: '自民党政調会会議' },
+      { start: 8.833, end: 12.0, color: '#AED581', label: '衆議院経済連営委員会' },
+      { start: 12.0, end: 12.75, color: '#4DB6AC', label: '昼食弁' },
+      { start: 12.75, end: 12.917, color: '#81C784', label: '自民党代議士会' },
+      { start: 12.917, end: 15.0, color: '#64B5F6', label: '衆議院本会議' },
+      { start: 15.0, end: 17.0, color: '#90CAF9', label: '議員立法審議会議' },
+      { start: 17.0, end: 18.25, color: '#42A5F5', label: '書類決済、来客対応' },
+      { start: 18.25, end: 19.667, color: '#1976D2', label: '懇談場所行事動作' },
+      { start: 19.667, end: 20.0, color: '#7E57C2', label: '退勤' },
+      { start: 20.0, end: 25.0, color: '#AB47BC', label: '入浴、食事、原稿執筆' }, // 25.0 = 次の日の1:00
+      { start: 1.0, end: 6.0, color: '#BA68C8', label: '就寝' }
+    ];
+
+    const svg = document.getElementById('chartSvg');
+    const centerX = 140;
+    const centerY = 140;
+    const radius = 110;
+    const innerRadius = 70;
+
+    // Function to convert time to angle (in degrees)
+    // 0:00 (midnight) is at top (270 degrees in standard SVG)
+    // 6:00 is at right (0 degrees in standard SVG)
+    // 12:00 is at bottom (90 degrees in standard SVG)
+    // 18:00 is at left (180 degrees in standard SVG)
+    function timeToAngle(hour) {
+      // Convert hour to degrees (360 degrees / 24 hours = 15 degrees per hour)
+      // Offset by -90 degrees to start at top (12 o'clock position)
+      return (hour * 15) - 90;
+    }
+
+    // Function to convert polar coordinates to cartesian
+    function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+      const angleInRadians = (angleInDegrees * Math.PI) / 180.0;
+      return {
+        x: centerX + (radius * Math.cos(angleInRadians)),
+        y: centerY + (radius * Math.sin(angleInRadians))
+      };
+    }
+
+    // Function to create arc path
+    function describeArc(x, y, radius, startAngle, endAngle) {
+      const start = polarToCartesian(x, y, radius, endAngle);
+      const end = polarToCartesian(x, y, radius, startAngle);
+      const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+      return [
+        "M", x, y,
+        "L", end.x, end.y,
+        "A", radius, radius, 0, largeArcFlag, 1, start.x, start.y,
+        "Z"
+      ].join(" ");
+    }
+
+    // Draw pie chart segments
+    scheduleData.forEach(item => {
+      let startTime = item.start;
+      let endTime = item.end;
+
+      // Handle overnight periods
+      if (endTime > 24) {
+        endTime = endTime - 24;
+      }
+      if (startTime >= 24) {
+        startTime = startTime - 24;
+      }
+
+      const startAngle = timeToAngle(startTime);
+      const endAngle = timeToAngle(endTime);
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', describeArc(centerX, centerY, radius, startAngle, endAngle));
+      path.setAttribute('fill', item.color);
+      svg.appendChild(path);
+    });
+
+    // Draw inner white circle
+    const innerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    innerCircle.setAttribute('cx', centerX);
+    innerCircle.setAttribute('cy', centerY);
+    innerCircle.setAttribute('r', innerRadius);
+    innerCircle.setAttribute('fill', 'white');
+    svg.appendChild(innerCircle);
+
+    // Add center text
+    const textLine1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    textLine1.setAttribute('x', centerX);
+    textLine1.setAttribute('y', centerY - 5);
+    textLine1.setAttribute('text-anchor', 'middle');
+    textLine1.setAttribute('font-size', '14');
+    textLine1.setAttribute('font-weight', 'bold');
+    textLine1.setAttribute('fill', '#333333');
+    textLine1.textContent = '一日の';
+    svg.appendChild(textLine1);
+
+    const textLine2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    textLine2.setAttribute('x', centerX);
+    textLine2.setAttribute('y', centerY + 12);
+    textLine2.setAttribute('text-anchor', 'middle');
+    textLine2.setAttribute('font-size', '14');
+    textLine2.setAttribute('font-weight', 'bold');
+    textLine2.setAttribute('fill', '#333333');
+    textLine2.textContent = 'スケジュール';
+    svg.appendChild(textLine2);
+
+    // Draw hour markers
+    const hours = [
+      { hour: 0, label: '24', x: 140, y: 22 },
+      { hour: 1, label: '1', x: 198, y: 35 },
+      { hour: 2, label: '2', x: 235, y: 72 },
+      { hour: 3, label: '3', x: 258, y: 118 },
+      { hour: 4, label: '4', x: 258, y: 162 },
+      { hour: 5, label: '5', x: 235, y: 208 },
+      { hour: 6, label: '6', x: 258, y: 145 },
+      { hour: 7, label: '7', x: 198, y: 245 },
+      { hour: 8, label: '8', x: 162, y: 258 },
+      { hour: 9, label: '9', x: 118, y: 258 },
+      { hour: 10, label: '10', x: 82, y: 245 },
+      { hour: 11, label: '11', x: 45, y: 208 },
+      { hour: 12, label: '12', x: 140, y: 262 },
+      { hour: 13, label: '13', x: 82, y: 245 },
+      { hour: 14, label: '14', x: 45, y: 208 },
+      { hour: 15, label: '15', x: 22, y: 162 },
+      { hour: 16, label: '16', x: 22, y: 118 },
+      { hour: 17, label: '17', x: 45, y: 72 },
+      { hour: 18, label: '18', x: 20, y: 145 },
+      { hour: 19, label: '19', x: 45, y: 72 },
+      { hour: 20, label: '20', x: 82, y: 35 },
+      { hour: 21, label: '21', x: 118, y: 22 },
+      { hour: 22, label: '22', x: 162, y: 22 },
+      { hour: 23, label: '23', x: 198, y: 35 }
+    ];
+
+    // Draw main hour markers (0, 6, 12, 18)
+    const mainHours = [
+      { label: '24', x: 140, y: 22 },
+      { label: '6', x: 258, y: 145 },
+      { label: '12', x: 140, y: 262 },
+      { label: '18', x: 20, y: 145 }
+    ];
+
+    mainHours.forEach(h => {
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', h.x);
+      text.setAttribute('y', h.y);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('font-size', '11');
+      text.setAttribute('fill', '#666666');
+      text.textContent = h.label;
+      svg.appendChild(text);
+    });
+
+    // Draw other hour markers
+    const otherHours = [
+      { label: '1', x: 198, y: 42 },
+      { label: '2', x: 235, y: 75 },
+      { label: '3', x: 250, y: 115 },
+      { label: '4', x: 240, y: 155 },
+      { label: '5', x: 210, y: 188 },
+      { label: '7', x: 165, y: 238 },
+      { label: '8', x: 125, y: 255 },
+      { label: '9', x: 85, y: 255 },
+      { label: '10', x: 50, y: 238 },
+      { label: '11', x: 25, y: 210 },
+      { label: '13', x: 50, y: 42 },
+      { label: '14', x: 30, y: 75 },
+      { label: '15', x: 30, y: 115 },
+      { label: '16', x: 30, y: 155 },
+      { label: '17', x: 50, y: 188 },
+      { label: '19', x: 45, y: 75 },
+      { label: '20', x: 65, y: 45 },
+      { label: '21', x: 100, y: 30 },
+      { label: '22', x: 140, y: 25 },
+      { label: '23', x: 180, y: 30 }
+    ];
+
+    otherHours.forEach(h => {
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', h.x);
+      text.setAttribute('y', h.y);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('font-size', '11');
+      text.setAttribute('fill', '#666666');
+      text.textContent = h.label;
+      svg.appendChild(text);
+    });
+  </script>
+</body>
+</html>

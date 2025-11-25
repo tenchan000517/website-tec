@@ -59,11 +59,11 @@ export default function CTASection() {
             </svg>
             <h2 className="text-4xl font-bold">RECRUIT</h2>
             <p className="text-xl leading-relaxed">
-              東海部品工業に興味を
+              フジタ電業に興味を
               <br />
               持ってくださった方はこちらへ
             </p>
-            <Link href="/recruit">
+            <Link href="/works/fujita-dengyo/recruit">
               <Button
                 variant="outline"
                 size="lg"
@@ -107,11 +107,11 @@ export default function CTASection() {
             </svg>
             <h2 className="text-4xl font-bold">CONTACT</h2>
             <p className="text-xl leading-relaxed">
-              東海部品工業、製品に関する
+              フジタ電業、製品に関する
               <br />
-              お問い合わせ・ご相談窓口はこちらをご覧ください。
+              お問い合わせ・ご相談はこちらをご覧ください。
             </p>
-            <Link href="/contact">
+            <Link href="/works/fujita-dengyo/contact">
               <Button
                 variant="outline"
                 size="lg"

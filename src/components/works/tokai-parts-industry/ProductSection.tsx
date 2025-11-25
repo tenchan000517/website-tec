@@ -32,15 +32,15 @@ export default function ProductSection() {
                 <h2 className="text-2xl font-bold text-gray-900">製品紹介</h2>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed">
-                SUV・ミニバンを中心に
+                空箱供給装置から電磁ブレーキまで
                 <br />
-                クルマを支える骨格を生産
+                生産ラインの自動化を実現
               </p>
               <p className="text-gray-600">
-                高い技術力と最新の設備を活用し、
-                高品質な自動車部品を製造しています。
+                空箱供給装置、特殊電磁ブレーキ、各種専用機など、
+                豊富な製品ラインナップで産業界のニーズに応えます。
               </p>
-              <Link href="/product">
+              <Link href="/works/fujita-dengyo/product">
                 <Button variant="primary" size="md">
                   詳しくはこちら
                   <svg

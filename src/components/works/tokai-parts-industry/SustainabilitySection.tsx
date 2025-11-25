@@ -82,7 +82,7 @@ export default function SustainabilitySection() {
             <br />
             地域社会への貢献や環境保全に積極的に取り組んでいます
           </p>
-          <Link href="/sustainability">
+          <Link href="/works/fujita-dengyo/sustainability">
             <Button
               variant="outline"
               size="md"
