@@ -16,14 +16,14 @@ const TAB_ORDER = [
 ]
 
 // タブの色を定義
-const TAB_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  'UIパーツ': { bg: 'bg-purple-600', text: 'text-purple-600', border: 'border-purple-600' },
-  'フロントエンド': { bg: 'bg-blue-600', text: 'text-blue-600', border: 'border-blue-600' },
-  'API連携': { bg: 'bg-green-600', text: 'text-green-600', border: 'border-green-600' },
-  'AI生成': { bg: 'bg-orange-500', text: 'text-orange-500', border: 'border-orange-500' },
-  'サービス別': { bg: 'bg-pink-500', text: 'text-pink-500', border: 'border-pink-500' },
-  'ナレッジ': { bg: 'bg-indigo-600', text: 'text-indigo-600', border: 'border-indigo-600' },
-  '開発スキル': { bg: 'bg-gray-600', text: 'text-gray-600', border: 'border-gray-600' }
+const TAB_COLORS: Record<string, { bg: string; text: string; border: string; labelBg: string }> = {
+  'UIパーツ': { bg: 'bg-purple-600', text: 'text-purple-600', border: 'border-purple-600', labelBg: 'bg-purple-100' },
+  'フロントエンド': { bg: 'bg-blue-600', text: 'text-blue-600', border: 'border-blue-600', labelBg: 'bg-blue-100' },
+  'API連携': { bg: 'bg-green-600', text: 'text-green-600', border: 'border-green-600', labelBg: 'bg-green-100' },
+  'AI生成': { bg: 'bg-orange-500', text: 'text-orange-500', border: 'border-orange-500', labelBg: 'bg-orange-100' },
+  'サービス別': { bg: 'bg-pink-500', text: 'text-pink-500', border: 'border-pink-500', labelBg: 'bg-pink-100' },
+  'ナレッジ': { bg: 'bg-indigo-600', text: 'text-indigo-600', border: 'border-indigo-600', labelBg: 'bg-indigo-100' },
+  '開発スキル': { bg: 'bg-gray-600', text: 'text-gray-600', border: 'border-gray-600', labelBg: 'bg-gray-100' }
 }
 
 export default function TechListPage() {
@@ -235,7 +235,7 @@ export default function TechListPage() {
                         {tech.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <span className={`text-xs px-2 py-1 rounded ${currentTabColor.bg} bg-opacity-10 ${currentTabColor.text}`}>
+                        <span className={`text-xs px-2 py-1 rounded ${currentTabColor.labelBg} ${currentTabColor.text}`}>
                           {parseCategory(tech.category).subCategory}
                         </span>
                         <span className="text-xs px-2 py-1 rounded bg-gray-100 text-gray-600">
